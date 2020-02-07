@@ -5,7 +5,7 @@ import {createStyles, makeStyles, Theme} from "@material-ui/core";
 import AndroidInner from "assets/svg/android_sms_inner.svg";
 import IOSInner from "assets/svg/ios_sms_inner.svg";
 import Typography from "@material-ui/core/Typography";
-import {blackOpacity, grayColor, inheritColor, whiteColor, whiteOpacity} from "assets/jss/material-dashboard-react";
+import {blackOpacity, inheritColor, whiteColor} from "assets/jss/material-dashboard-react";
 import {ISMSVariant, MobileVariantType} from "interfaces/IVariant";
 import {Dictionary, DictionaryService} from "services/Dictionary/Dictionary";
 import Grid from "@material-ui/core/Grid";

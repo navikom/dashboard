@@ -14,5 +14,8 @@ export interface ISegmentViewForm {
   keys?: ValueType[];
 
   setExpression(value: string): void;
-  setValue(value: string | Date | number | (string | number)[], key: ValueType): void;
+  setValue(
+    value: string | Date | number | (string | number)[],
+    key: ValueType
+  ): void;
 }

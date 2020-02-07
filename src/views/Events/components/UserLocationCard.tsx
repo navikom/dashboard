@@ -9,7 +9,11 @@ import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
 
 import GridContainer from "components/Grid/GridContainer";
 
-export const UserLocationCard = ({...props}) => {
+type UserLocationCardType = {
+  location?: IUsersRegions;
+}
+
+export function UserLocationCard(props: UserLocationCardType) {
   const location = props.location ? props.location : { region: {} } as IUsersRegions;
   return (
     <GridContainer spacing={1}>
@@ -28,4 +32,4 @@ export const UserLocationCard = ({...props}) => {
       </GridContainer>
     </GridContainer>
   )
-};
+}

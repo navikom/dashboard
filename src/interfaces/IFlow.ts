@@ -1,4 +1,4 @@
 export interface IFlow {
-  start(): void
-  stop(): void
+  start(): void;
+  stop(): void;
 }

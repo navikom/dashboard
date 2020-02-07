@@ -7,7 +7,7 @@ export interface ISettings {
   loaded: boolean;
   cloudinaryPath?: string;
   cloudinaryFolder?: string;
-  bee?: string,
+  bee?: string;
   beefree?: IBeefree;
   systemEventsList?: string[];
   customEventsList?: string[];

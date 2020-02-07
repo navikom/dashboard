@@ -5,7 +5,7 @@ import { IStep } from "interfaces/IStep";
 export type SelectType = {
   id: number;
   name: string;
-}
+};
 
 export interface IAudienceStep extends IStep {
   name?: string;
@@ -14,10 +14,10 @@ export interface IAudienceStep extends IStep {
   includeSegments: IObservableArray<ISegment>;
   excludeSegments: IObservableArray<ISegment>;
 
-  segmentsListForSelect(include?: boolean): void;
+  segmentsListForSelect(include?: boolean): (string | (string | number)[])[];
   segmentsListForAutoSelect(include?: boolean): void;
   segmentsValuesForSelect(include?: boolean): void;
-  validate(data?: {[key: string]: string | undefined}): void;
+  validate(data?: { [key: string]: string | undefined }): void;
   setName(name?: string): void;
   switchMultipleSegments(): void;
   addSegment(selected: number | SelectType[], include?: boolean): void;

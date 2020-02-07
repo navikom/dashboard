@@ -10,10 +10,10 @@ export class TestStepStore implements ITestStep {
  static propertyNames = TestPropertyNames;
  @observable static testSegments: ITestSegments = TestSegments;
 
- @observable currentVariant: number = 0;
+ @observable currentVariant = 0;
  @observable currentSegment!: ITestSegment;
- @observable open: boolean = false;
- @observable dataOfSegmentedUsers: boolean = true;
+ @observable open = false;
+ @observable dataOfSegmentedUsers = true;
  @observable userToTestData!: IUser;
 
  @computed get isValidStep(): boolean {
@@ -66,7 +66,7 @@ export class TestStepStore implements ITestStep {
 
  //########### static ###########//
  @computed static get options() {
-  return TestSegments.items.map((e:ITestSegment) => [e.testSegmentId, e.name]);
+  return TestSegments.items.map((e: ITestSegment) => [e.testSegmentId, e.name]);
  }
 
 }

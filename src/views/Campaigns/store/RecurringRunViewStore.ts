@@ -6,8 +6,7 @@ import {IRecurringRunView} from "interfaces/IRunTypeView";
 
 // models
 import {RecurringRunStore} from "models/Campaign/RecurringRunStore";
-import {DaysOfWeek, OccurrenceTimePeriods, PeriodAmount, TimePeriods} from "models/Constants";
-import moment from "moment";
+import {DaysOfWeek, OccurrenceTimePeriods, PeriodAmount} from "models/Constants";
 import {closerDay, closerMonthDay, closerWeekDay} from "utils/convertDate";
 
 const monthlyDays = {
@@ -25,8 +24,8 @@ export class RecurringRunViewStore implements IRecurringRunView {
  ]);
 
  @observable model: IRecurringRun = new RecurringRunStore();
- @observable never: boolean = true;
- @observable now: boolean = true;
+ @observable never = true;
+ @observable now = true;
  @observable timePeriod: string = OccurrenceTimePeriods[0];
  @observable secondSelectOptions?: string[];
  @observable secondOption?: string;

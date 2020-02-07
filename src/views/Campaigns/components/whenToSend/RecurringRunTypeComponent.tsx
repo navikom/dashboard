@@ -51,7 +51,7 @@ export default observer(() => {
  };
 
  let second, third;
- let fieldProps = {
+ const fieldProps = {
   time: store.reoccurTime || new Date(),
   onChange: (time: Date) => store.setReoccurTime(time),
   label: Dictionary.defValue(DictionaryService.keys.at)
@@ -75,7 +75,7 @@ export default observer(() => {
   disabled: true
  };
 
- let fifth = {
+ const fifth = {
   time: store.model.startDate || new Date(),
   onChange: () => {},
   disabled: true

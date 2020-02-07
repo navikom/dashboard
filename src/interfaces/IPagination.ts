@@ -14,7 +14,12 @@ export interface IPagination<T> {
   getNext(): Promise<boolean>;
   tryGetNext(): Promise<void>;
   reachedBottom(scrollTop: number, height: number): Promise<void>;
-  handleChangePageInView(event: React.MouseEvent<HTMLButtonElement> | null, newPage: number): void;
-  handleChangeRowsPerPage(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void;
+  handleChangePageInView(
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ): void;
+  handleChangeRowsPerPage(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void;
   push(data: T[]): void;
 }

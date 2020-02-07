@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 // @material-ui/icons
-import {Clear, InsertEmoticon, Person} from "@material-ui/icons";
+import {Clear, Person} from "@material-ui/icons";
 
 // interfaces
 import {ContentSMSPropsType, IContentSMSView} from "interfaces/IContentStep";

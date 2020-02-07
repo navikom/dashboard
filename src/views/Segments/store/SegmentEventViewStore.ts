@@ -1,5 +1,5 @@
 import { action, computed, observable } from "mobx";
-import { AndType, ExpressionValueType, OrType, ValueType } from "types/expressions";
+import { AndType, ExpressionValueType, OrType } from "types/expressions";
 import { AND, OccurExpressionsMap, OR } from "models/Constants";
 import { ISegmentEventView } from "interfaces/ISegmentEventView";
 import { Events } from "models/Event/EventsStore";

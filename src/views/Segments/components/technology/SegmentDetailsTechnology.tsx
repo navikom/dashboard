@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%"
     },
     heading: {
-      opacity: .5,
+      opacity: 0.5,
       fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular,
+      fontWeight: theme.typography.fontWeightRegular
     },
     box: {
       boxShadow: "none",
@@ -31,12 +31,16 @@ const useStyles = makeStyles((theme: Theme) =>
     forbidBorderBottom: {
       borderBottom: "none"
     }
-  }));
+  })
+);
 
 export default () => {
   const classes = useStyles();
   const [opened, setOpened] = useState([false, false]);
-  const onChange = (index: number) => (event: React.ChangeEvent<{}>, expanded: boolean) => {
+  const onChange = (index: number) => (
+    event: React.ChangeEvent<{}>,
+    expanded: boolean
+  ) => {
     const array = opened.slice();
     array[index] = expanded;
     setOpened(array);
@@ -53,12 +57,10 @@ export default () => {
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
-          <Typography className={classes.heading}>
-            ANDROID
-          </Typography>
+          <Typography className={classes.heading}>ANDROID</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <DeviceComponent device="android"/>
+          <DeviceComponent device="android" />
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel className={classes.box} onChange={onChange(1)}>
@@ -67,14 +69,12 @@ export default () => {
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
-          <Typography className={classes.heading}>
-            IOS
-          </Typography>
+          <Typography className={classes.heading}>IOS</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <DeviceComponent device="ios"/>
+          <DeviceComponent device="ios" />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
-  )
-}
+  );
+};

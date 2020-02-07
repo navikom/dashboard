@@ -11,8 +11,9 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 import styles from "assets/jss/material-dashboard-react/views/singlePageStyle.tsx";
 
-interface StartPageProps extends RouteComponentProps, WithStyles<typeof styles> {
-}
+interface StartPageProps
+  extends RouteComponentProps,
+    WithStyles<typeof styles> {}
 class StartPage extends React.Component<StartPageProps> {
   render() {
     const { classes } = this.props;
@@ -22,12 +23,17 @@ class StartPage extends React.Component<StartPageProps> {
           <GridItem xs={6} sm={6} md={4}>
             <Slide direction="down" in={true} mountOnEnter unmountOnExit>
               <Fade in={true} mountOnEnter unmountOnExit>
-                <h1 className={`${classes.cardTitleWhite} ${classes.titleWhite}`}>Admin Panel</h1>
+                <h1
+                  className={`${classes.cardTitleWhite} ${classes.titleWhite}`}
+                >
+                  Admin Panel
+                </h1>
               </Fade>
             </Slide>
           </GridItem>
         </GridContainer>
-      </div>);
+      </div>
+    );
   }
 }
 

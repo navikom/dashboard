@@ -13,7 +13,10 @@ import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
 
 // core components
 import CustomInput from "components/CustomInput/CustomInput";
-import { PasswordType, UserDetails } from "views/UserProfile/components/UserDetailsStore";
+import {
+  PasswordType,
+  UserDetails
+} from "views/UserProfile/components/UserDetailsStore";
 import ProgressButton from "components/CustomButtons/ProgressButton";
 import useStyles from "assets/jss/material-dashboard-react/components/inputFieldStyle";
 
@@ -22,16 +25,21 @@ const extraStyles = makeStyles((theme: Theme) =>
     label: {
       width: theme.typography.pxToRem(200)
     }
-  }));
+  })
+);
 
-export default observer((props) => {
+function UserCredentials() {
   const classes = useStyles();
   const extraClasses = extraStyles();
-  const centerNote = classNames(classes.note, classes.center, extraClasses.label);
+  const centerNote = classNames(
+    classes.note,
+    classes.center,
+    extraClasses.label
+  );
   const store = UserDetails.passwordStore;
-  const onChange = (name: PasswordType) =>
-    (e: React.ChangeEvent<HTMLInputElement>) =>
-      store.onInput(name, e.target.value);
+  const onChange = (name: PasswordType) => (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => store.onInput(name, e.target.value);
   return (
     <Grid container>
       <Grid container item direction="row">
@@ -49,7 +57,8 @@ export default observer((props) => {
             onChange: onChange("password"),
             value: store.password
           }}
-          labelText=""/>
+          labelText=""
+        />
       </Grid>
       <Grid container item direction="row">
         <Typography variant="subtitle2" className={centerNote}>
@@ -66,7 +75,8 @@ export default observer((props) => {
             onChange: onChange("newPassword"),
             value: store.newPassword
           }}
-          labelText=""/>
+          labelText=""
+        />
       </Grid>
       <Grid container item direction="row">
         <Typography variant="subtitle2" className={centerNote}>
@@ -83,7 +93,8 @@ export default observer((props) => {
             onChange: onChange("confirmPassword"),
             value: store.confirmPassword
           }}
-          labelText=""/>
+          labelText=""
+        />
       </Grid>
       <ProgressButton
         onClick={() => UserDetails.saveNewPassword()}
@@ -92,8 +103,10 @@ export default observer((props) => {
         loading={UserDetails.fetching}
         color="primary"
         text={Dictionary.defValue(DictionaryService.keys.save)}
-        startIcon={<CloudUploadIcon/>}
+        startIcon={<CloudUploadIcon />}
       />
     </Grid>
   );
-});
+}
+
+export default observer(UserCredentials);

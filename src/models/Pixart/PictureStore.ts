@@ -8,9 +8,9 @@ export class PictureStore implements IPicture {
   createdAt: Date;
   pictureId: number;
   users!: IUser;
-  pk: string = "pictureId";
+  pk = "pictureId";
 
-  path(width: number = 300): string {
+  path(width = 300): string {
     return computed(() => `${Settings.cloudinaryPath}/image/upload/Pixart/${this.pictureId}`).get();
   }
 

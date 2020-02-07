@@ -14,7 +14,7 @@ class ImagesStore {
 
   @action
   getOrCreate(data: IImage) {
-    if(!this.has(data.imageId)) {
+    if (!this.has(data.imageId)) {
       this.items.push(data);
     }
     return this.getById(data.imageId);

@@ -8,7 +8,7 @@ const useInfoStyles = makeStyles((theme: Theme) =>
       marginBottom: theme.typography.pxToRem(20)
     },
     label: {
-      opacity: .4,
+      opacity: 0.4,
       fontWeight: 600
     },
     wrapper: {
@@ -44,10 +44,11 @@ export const ExpansionDataItems = ({ ...props }) => {
   return (
     <Grid container className={classes.wrapper}>
       <Grid container className={classes.nested} direction="row">
-        <Grid item className={classes.label}>{props.title}:&nbsp;</Grid>
+        <Grid item className={classes.label}>
+          {props.title}:&nbsp;
+        </Grid>
         <Grid item>{props.data}</Grid>
       </Grid>
     </Grid>
-
   );
 };

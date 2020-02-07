@@ -11,10 +11,10 @@ import { Roles } from "models/Role/RolesStore";
 
 class UserDetailsStore extends Errors {
   @observable user?: IUser;
-  @observable fetching: boolean = false;
+  @observable fetching = false;
   @observable currentReferral?: IUser;
 
-  @computed get roles() {
+  @computed get roles(): IRole[] {
     return Roles.items.filter((role: IRole) => !role.deletedAt);
   }
 
@@ -22,11 +22,12 @@ class UserDetailsStore extends Errors {
     this.user = user;
   }
 
-  @action bindCurrentReferral(userId: string) {
-    this.currentReferral = this.user!.referrals.getById(parseInt(userId));
+  @action bindCurrentReferral(userId: string): void{
+    this.currentReferral = this.user && this.user.referrals.getById(parseInt(userId));
   }
 
-  @action async updateRole(role: IRole) {
+  @action
+  async updateRole(role: IRole) {
     try {
       const data = await api(Apis.Main).user.updateRole(this.user!.userId, role.roleId);
       this.user!.updateRoles(data);

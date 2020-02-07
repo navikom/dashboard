@@ -7,11 +7,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 // core components
 import Button from "components/CustomButtons/Button.tsx";
-import buttonStyle from "assets/jss/material-dashboard-react/components/buttonStyle.tsx";
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
 import { primaryColor } from "assets/jss/material-dashboard-react";
-
 
 const useStyle = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,13 +31,14 @@ const useStyle = makeStyles((theme: Theme) =>
         backgroundColor: primaryColor[2]
       }
     }
-  }));
+  })
+);
 
-const ProgressButton = ({...props}) => {
-  const {loading, text, ...rest} = props;
+const ProgressButton = ({ ...props }) => {
+  const { loading, text, ...rest } = props;
   const classes = useStyle();
   const btnClasses = classNames({
-    [classes.success]: !loading,
+    [classes.success]: !loading
   });
   return (
     <div className={classes.wrapper}>
@@ -52,10 +50,9 @@ const ProgressButton = ({...props}) => {
       >
         {text}
       </Button>
-      {loading && <CircularProgress size={32} className={classes.progress}/>}
+      {loading && <CircularProgress size={32} className={classes.progress} />}
     </div>
   );
-
 };
 
 export default ProgressButton;

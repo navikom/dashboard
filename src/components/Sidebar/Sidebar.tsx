@@ -54,7 +54,7 @@ const Links = observer((props: LinkProps) => {
   const treeMap = [SIDEBAR_MAIN, SIDEBAR_APPLICATION, SIDEBAR_ENGAGE, SIDEBAR_USER, SIDEBAR_OTHER]
     .map((key) =>
       [getKey(key), props.routes.filter((route: google.maps.DirectionsRoute & IRoute) =>
-        route.category === key && (!route.role || App.user && App.user.hasRole(route.role)))]);
+        route.category === key && (!route.role || (App.user && App.user.hasRole(route.role))))]);
 
   return (
     <div>
@@ -73,10 +73,9 @@ const Links = observer((props: LinkProps) => {
                 })}
               />
               {routesList[1].map((prop: google.maps.DirectionsRoute & IRoute, key: number) => {
-                let listItemClasses;
                 if (!prop.path || !prop.auth) return null;
                 if(prop.auth && !App.loggedIn) return null;
-                listItemClasses = classNames({
+                const listItemClasses = classNames({
                   [" " + classes[color]]: activeRoute(prop.layout + prop.path)
                 });
                 const whiteFontClasses = classNames({
@@ -161,7 +160,7 @@ interface ISidebar extends RouteComponentProps {
   currentApp: string;
 }
 
-const Sidebar = (props: ISidebar) => {
+function Sidebar(props: ISidebar) {
   const classes = useSidebarStyle();
   const {color, logo, image, logoText, routes, history, currentApp, rtlActive} = props;
 
@@ -220,6 +219,6 @@ const Sidebar = (props: ISidebar) => {
       </Hidden>
     </div>
   );
-};
+}
 
 export default Sidebar;

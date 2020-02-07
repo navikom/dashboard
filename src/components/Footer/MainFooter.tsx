@@ -10,8 +10,8 @@ function Footer({ ...props }) {
   return (
     <footer className={classes.mainFooter}>
       <div className={classes.container}>
-        <div className={classes.left}></div>
-        <p className={classes.right} style={{paddingRight: "15px"}}>
+        <div className={classes.left} />
+        <p className={classes.right} style={{ paddingRight: "15px" }}>
           <span>
             &copy; {new Date().getFullYear()}{" "}
             <a href="http://webinsolut.com" className={classes.a}>

@@ -31,19 +31,19 @@ type FormItemType = {
  values?: (number | string)[];
  min?: number;
  max?: number;
- date?: Date,
- time?: Date,
- from?: Date,
- to?: Date
+ date?: Date;
+ time?: Date;
+ from?: Date;
+ to?: Date;
  options?: string[];
  label?: string;
- gridSize?: {xs: GridSize, sm: GridSize, md: GridSize};
+ gridSize?: {xs: GridSize; sm: GridSize; md: GridSize};
  placeholder?: string;
  type?: string;
  disabled?: boolean;
 };
 
-const FilterComponent = (props: FormItemType) => {
+function FilterGrid(props: FormItemType) {
  const classes = useStyles();
  const from = props.from !== undefined;
  const to = props.to !== undefined;
@@ -188,9 +188,9 @@ const FilterComponent = (props: FormItemType) => {
     }
    </Grid>
  );
-};
+}
 
-export default ({...props}) => {
+function FiltarableComponent({...props}) {
  const data = [props.first, props.second, props.third, props.fourth].filter(e => e !== undefined);
  const gridSize = {xs: 10, sm: 3, md: 3};
  if (data.length <= 2) {
@@ -202,8 +202,10 @@ export default ({...props}) => {
  return (
    <Grid container>
     {
-     data.map((prop, i: number) => <FilterComponent key={i} gridSize={gridSize} {...prop} />)
+     data.map((prop, i: number) => <FilterGrid key={i} gridSize={gridSize} {...prop} />)
     }
    </Grid>
  );
 }
+
+export default FiltarableComponent;

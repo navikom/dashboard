@@ -28,11 +28,11 @@ export class AudienceStepStore implements IAudienceStep {
 
   @observable name?: string;
   @observable errors: {[key: string]: string} = {};
-  @observable multipleSegments: boolean = false;
+  @observable multipleSegments = false;
   @observable includeSegments = observable<ISegment>([]);
   @observable excludeSegments = observable<ISegment>([]);
 
-  segmentsListForSelect(include: boolean = true) {
+  segmentsListForSelect(include = true) {
     return computed(() =>
       Segments.items
         .filter((e: ISegment) => include ? !this.includeSegments.includes(e) : !this.excludeSegments.includes(e))
@@ -40,7 +40,7 @@ export class AudienceStepStore implements IAudienceStep {
     ).get();
   }
 
-  segmentsListForAutoSelect(include: boolean = true) {
+  segmentsListForAutoSelect(include = true) {
     return computed(() =>
       Segments.items
         .filter((e: ISegment) => include ? !this.includeSegments.includes(e) : !this.excludeSegments.includes(e))
@@ -48,7 +48,7 @@ export class AudienceStepStore implements IAudienceStep {
     ).get();
   }
 
-  segmentsValuesForSelect(include: boolean = true) {
+  segmentsValuesForSelect(include = true) {
     return computed(() =>
       (include ? this.includeSegments : this.excludeSegments).map((e: ISegment) => ({id: e.segmentId, name: e.name}))
     ).get();
@@ -71,7 +71,7 @@ export class AudienceStepStore implements IAudienceStep {
     this.multipleSegments = !this.multipleSegments;
   }
 
-  @action addSegment(selected: number | SelectType[], include: boolean = true) {
+  @action addSegment(selected: number | SelectType[], include = true) {
     if(include) {
       if(Array.isArray(selected)) {
         selected.forEach((e: SelectType) => Segments.has(e.id) && this.includeSegments.push(Segments.getById(e.id) as ISegment));
@@ -84,7 +84,7 @@ export class AudienceStepStore implements IAudienceStep {
     }
   }
 
-  @action deleteSegment(segment: ISegment, include: boolean = true) {
+  @action deleteSegment(segment: ISegment, include = true) {
     if(include) {
       this.includeSegments.splice(this.includeSegments.indexOf(segment), 1);
     } else {

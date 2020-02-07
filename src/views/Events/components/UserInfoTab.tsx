@@ -1,7 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 // services
 import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
+
+// interfaces
+import { IUser } from "interfaces/IUser";
 
 // core components
 import { UserContactCard } from "views/Events/components/UserContactCard";
@@ -13,7 +16,12 @@ import CardBody from "components/Card/CardBody";
 import GridItem from "components/Grid/GridItem";
 import GridContainer from "components/Grid/GridContainer";
 
-const InfoTabCard = ({ ...props }) => (
+type InfoTabCardType = {
+  header: string | ReactNode;
+  body: ReactNode;
+}
+
+const InfoTabCard = (props: InfoTabCardType) => (
   <GridContainer>
     <GridItem xs={12} sm={12} md={12}>
       <Card>
@@ -28,7 +36,11 @@ const InfoTabCard = ({ ...props }) => (
   </GridContainer>
 );
 
-const UserInfoTab = ({...props}) => (
+type UserInfoTabType = {
+  user: IUser;
+}
+
+const UserInfoTab = (props: UserInfoTabType) => (
   <div>
     <InfoTabCard
       header={Dictionary.defValue(DictionaryService.keys.contact)}
@@ -43,6 +55,6 @@ const UserInfoTab = ({...props}) => (
       body={<UserEventsCard user={props.user} />}
     />
   </div>
-)
+);
 
 export default UserInfoTab

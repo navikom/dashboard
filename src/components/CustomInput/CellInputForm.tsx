@@ -10,15 +10,23 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default ({...props}) => {
+function CellInputForm({ ...props }) {
   const classes = useStyles();
-  const {onClick, color, disabled, icon, ...rest} = props;
+  const { onClick, color, disabled, icon, ...rest } = props;
   return (
     <div>
-      <TextField id="standard-basic" {...rest}/>
-      <Fab color={color} onClick={onClick} size="superSm" disabled={disabled} className={classes.fab}>
+      <TextField id="standard-basic" {...rest} />
+      <Fab
+        color={color}
+        onClick={onClick}
+        size="superSm"
+        disabled={disabled}
+        className={classes.fab}
+      >
         {React.createElement(icon)}
       </Fab>
     </div>
-  )
+  );
 }
+
+export default CellInputForm;

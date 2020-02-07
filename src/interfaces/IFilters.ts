@@ -15,8 +15,8 @@ export interface IStringFilter {
 }
 
 export interface IDateFilter {
-  is?: DateTypes,
-  date?: Date,
-  from?: Date,
-  to?: Date
+  is?: DateTypes;
+  date?: Date;
+  from?: Date;
+  to?: Date;
 }

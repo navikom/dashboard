@@ -14,7 +14,7 @@ import IconButton from "@material-ui/core/IconButton";
 import {Clear, InsertEmoticon, Person, Delete} from "@material-ui/icons";
 
 // interfaces
-import {ContentNotificationPropsType, IContentDevice, IContentPushOrInApp} from "interfaces/IContentStep";
+import {ContentNotificationPropsType, IContentPushOrInApp} from "interfaces/IContentStep";
 import {IPushMessage, IPushVariant} from "interfaces/IVariant";
 
 // services
@@ -212,6 +212,6 @@ function PushComponent(props: {store: IContentPushOrInApp}) {
     <EmojiPopper store={store.emojiStore} />
    </div>
  );
-};
+}
 
 export default observer(PushComponent);

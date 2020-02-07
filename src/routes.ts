@@ -21,11 +21,12 @@ import {
 import { lazy } from "utils";
 import {
   PANEL_ROUTE,
-  SIDEBAR_APPLICATION, SIDEBAR_ENGAGE,
+  SIDEBAR_APPLICATION,
+  SIDEBAR_ENGAGE,
   SIDEBAR_MAIN,
   SIDEBAR_OTHER,
   SIDEBAR_USER,
-  SUPER_ADMIN_ROLE,
+  SUPER_ADMIN_ROLE
 } from "models/Constants";
 import { IRoute } from "interfaces/IRoute";
 
@@ -33,28 +34,21 @@ const DashboardPage = lazy(() => import("views/Dashboard/Dashboard"));
 const EventsUsersList = lazy(() => import("views/Events/EventsUsersList.tsx"));
 const EventsUsersItem = lazy(() => import("views/Events/EventsUsersItem.tsx"));
 const UserProfile = lazy(() => import("views/UserProfile/UserProfile"));
-const TableList = lazy(() => import("views/TableList/TableList"));
 const AppsList = lazy(() => import("views/AppsList/AppsList"));
 const UsersList = lazy(() => import("views/Users/UsersList"));
 const UsersItem = lazy(() => import("views/Users/UsersItem"));
 const RolesList = lazy(() => import("views/Roles/RolesList"));
 const AppsItem = lazy(() => import("views/AppsList/AppsItem"));
-const Typography = lazy(() => import("views/Typography/Typography"));
-const Icons = lazy(() => import("views/Icons/Icons"));
-const Maps = lazy(() => import("views/Maps/Maps"));
 const Login = lazy(() => import("views/Login/Login"));
 const SignUp = lazy(() => import("views/SignUp/SignUp"));
 const StartPage = lazy(() => import("views/StartPage/StartPage"));
-const NotificationsPage = lazy(() => import("views/Notifications/Notifications"));
+
 const Guide = lazy(() => import("views/Guide/Guide"));
-const SettingsPage = lazy(() => import("views/Guide/Guide"));
 const Build = lazy(() => import("views/Build/Build"));
 const CampaignsList = lazy(() => import("views/Campaigns/CampaignsList"));
 const CampaignsItem = lazy(() => import("views/Campaigns/CampaignsItem"));
 const SegmentsList = lazy(() => import("views/Segments/SegmentsList"));
 const SegmentsItem = lazy(() => import("views/Segments/SegmentsItem"));
-// core components/views for RTL layout
-const RTLPage = lazy(() => import("views/RTLPage/RTLPage.tsx"));
 
 const dashboardRoutesMap = {
   guide: {
@@ -360,7 +354,7 @@ const appItem = {
   category: SIDEBAR_APPLICATION
 };
 
-export const appRoutes: {[key: string]: IRoute[]} = {
+export const appRoutes: { [key: string]: IRoute[] } = {
   common: [
     appItem,
     {
@@ -383,13 +377,11 @@ export const appRoutes: {[key: string]: IRoute[]} = {
       url: undefined,
       name: "Pictures",
       rtlName: "لوحة القيادة",
-      icon: Image,
+      icon: Image
     }
   ]
 };
 
-export const mainNavRoutes = [
-  dashboardRoutesMap.login
-];
+export const mainNavRoutes = [dashboardRoutesMap.login];
 
 export default Object.values(dashboardRoutesMap);

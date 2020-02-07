@@ -36,9 +36,14 @@ const extraStyles = makeStyles((theme: Theme) =>
       width: theme.typography.pxToRem(200),
       marginRight: theme.typography.pxToRem(30)
     }
-  }));
+  })
+);
 
-const RunTypeComponents = [OneTimeRunTypeComponent, TriggerRunTypeComponent, RecurringRunTypeComponent];
+const RunTypeComponents = [
+  OneTimeRunTypeComponent,
+  TriggerRunTypeComponent,
+  RecurringRunTypeComponent
+];
 
 export default observer(() => {
   const store = CampaignViewStore.whenToRunStepStore;
@@ -46,13 +51,23 @@ export default observer(() => {
 
   const classes = useStyles();
   const extraClasses = extraStyles();
-  const centerNote = classNames(classes.note, classes.center, classes.textToRight, extraClasses.label);
+  const centerNote = classNames(
+    classes.note,
+    classes.center,
+    classes.textToRight,
+    extraClasses.label
+  );
 
   return (
     <Card>
       <CardBody>
         <Grid container>
-          <Grid container item direction="row" className={extraClasses.container}>
+          <Grid
+            container
+            item
+            direction="row"
+            className={extraClasses.container}
+          >
             <Typography variant="subtitle2" className={centerNote}>
               {Dictionary.defValue(DictionaryService.keys.runType)}
             </Typography>
@@ -66,11 +81,9 @@ export default observer(() => {
               </FormControl>
             </Grid>
           </Grid>
-          {
-            React.createElement(RunTypeComponents[store.currentRunType - 1])
-          }
+          {React.createElement(RunTypeComponents[store.currentRunType - 1])}
         </Grid>
       </CardBody>
     </Card>
-  )
+  );
 });

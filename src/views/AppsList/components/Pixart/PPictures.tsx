@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: theme.typography.fontWeightBold,
       marginLeft: theme.typography.pxToRem(20),
       width: theme.typography.pxToRem(150),
-      opacity: .4
+      opacity: 0.4
     },
     header: {
       color: grayColor[0],
@@ -79,17 +79,25 @@ type PaginationType = {
   count: number;
   labelRowsPerPage?: React.ReactNode;
   nextIconButtonProps?: Partial<IconButtonProps>;
-  onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
-  onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onChangePage: (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    page: number
+  ) => void;
+  onChangeRowsPerPage?: React.ChangeEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
   page: number;
   rowsPerPage: number;
   rowsPerPageOptions?: Array<number | { value: number; label: string }>;
-}
+};
 
-const Pagination = (props: PaginationType) => {
+function Pagination(props: PaginationType) {
   return (
     <TablePagination
-      labelRowsPerPage={`${Dictionary.defValue(DictionaryService.keys.rowsPerPage, DictionaryService.keys.pictures)}:`}
+      labelRowsPerPage={`${Dictionary.defValue(
+        DictionaryService.keys.rowsPerPage,
+        DictionaryService.keys.pictures
+      )}:`}
       component="div"
       backIconButtonProps={{
         "aria-label": "previous page"
@@ -100,9 +108,13 @@ const Pagination = (props: PaginationType) => {
       {...props}
     />
   );
-};
+}
 
-const PictureCard = ({ ...props }) => {
+type PictureCardProps = {
+  picture: IPicture;
+}
+
+function PictureCard(props: PictureCardProps) {
   const classes = useCardStyles();
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -118,29 +130,26 @@ const PictureCard = ({ ...props }) => {
               Lizard
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
+              Lizards are a widespread group of squamate reptiles, with over
+              6,000 species, ranging across all continents except Antarctica
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button link>
-            Share
-          </Button>
-          <Button link>
-            Learn More
-          </Button>
+          <Button link>Share</Button>
+          <Button link>Learn More</Button>
         </CardActions>
       </Card>
     </Grid>
   );
-};
+}
 
-const PPictures = observer(() => {
+function PPictures() {
   const classes = useStyles();
   PixartStore.setMainAppStore(AppDataStore);
   useDisposable(() =>
-    when(() => App.sessionIsReady, () => PixartStore.pictures.fetchItems()));
+    when(() => App.sessionIsReady, () => PixartStore.pictures.fetchItems())
+  );
   return (
     <Grid container>
       <Card className={classes.card}>
@@ -156,27 +165,39 @@ const PPictures = observer(() => {
                 onClick={() => PixartStore.setDropZoneOpen()}
                 variant="contained"
                 color="white"
-                startIcon={<WallpaperOutlined/>}
-              >{Dictionary.defValue(DictionaryService.keys.upload)}</Button>
+                startIcon={<WallpaperOutlined />}
+              >
+                {Dictionary.defValue(DictionaryService.keys.upload)}
+              </Button>
               <Pagination
                 rowsPerPageOptions={PixartStore.pictures.rowsPerPageOptions}
                 count={PixartStore.pictures.count}
                 rowsPerPage={PixartStore.pictures.viewRowsPerPage}
                 page={PixartStore.pictures.viewPage}
                 onChangePage={PixartStore.pictures.handleChangePageInView}
-                onChangeRowsPerPage={PixartStore.pictures.handleChangeRowsPerPage}
+                onChangeRowsPerPage={
+                  PixartStore.pictures.handleChangeRowsPerPage
+                }
               />
             </Grid>
           }
           title={Dictionary.defValue(DictionaryService.keys.pictures)}
-          subheader={PixartStore.pictures.size > 0 ?
-            `${Dictionary.defValue(DictionaryService.keys.lastChanged, Dictionary.timeDateString(PixartStore.pictures.items[0].createdAt) || "")}` : ""}
+          subheader={
+            PixartStore.pictures.size > 0
+              ? `${Dictionary.defValue(
+                  DictionaryService.keys.lastChanged,
+                  Dictionary.timeDateString(
+                    PixartStore.pictures.items[0].createdAt
+                  ) || ""
+                )}`
+              : ""
+          }
         />
         <CardContent>
           <Grid container spacing={2}>
-            {
-              PixartStore.pictures.pageData.map((e: IPicture, i: number) => <PictureCard key={i} picture={e}/>)
-            }
+            {PixartStore.pictures.pageData.map((e: IPicture, i: number) => (
+              <PictureCard key={i} picture={e} />
+            ))}
           </Grid>
         </CardContent>
         <CardActions className={classes.actions}>
@@ -194,7 +215,7 @@ const PPictures = observer(() => {
         dropzoneText={Dictionary.defValue(DictionaryService.keys.dragAndDrop)}
         filesLimit={10}
         open={PixartStore.pictureDropZoneOpen}
-        onSave={(e) => PixartStore.savePictures(e)}
+        onSave={e => PixartStore.savePictures(e)}
         acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
         showPreviews={true}
         maxFileSize={5000000}
@@ -202,6 +223,6 @@ const PPictures = observer(() => {
       />
     </Grid>
   );
-});
+}
 
-export default PPictures;
+export default observer(PPictures);

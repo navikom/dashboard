@@ -10,7 +10,10 @@ export class UsersDevices implements IUsersDevices {
 
   get plainData() {
     const data = [
-      [Dictionary.defValue(DictionaryService.keys.createdAt), Dictionary.timeDateString(this.createdAt) || ''],
+      [
+        Dictionary.defValue(DictionaryService.keys.createdAt),
+        Dictionary.timeDateString(this.createdAt) || ""
+      ],
       ...this.device.plainData
     ];
     return data;

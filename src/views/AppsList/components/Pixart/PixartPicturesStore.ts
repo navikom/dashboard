@@ -20,7 +20,8 @@ export class PixartPicturesStore extends Pagination<IPicture> {
       "pagination",
       [6, 12, 36, 60, 120],
       null,
-      6);
+      6
+    );
   }
 
   @action addData(data: IPicture[]) {
@@ -31,7 +32,7 @@ export class PixartPicturesStore extends Pagination<IPicture> {
   @action push(data: IPicture[]) {
     let l = data.length;
     while (l--) {
-      if(!this.has(data[l].pictureId)) {
+      if (!this.has(data[l].pictureId)) {
         this.items.push(PictureStore.from(data[l]));
       }
     }

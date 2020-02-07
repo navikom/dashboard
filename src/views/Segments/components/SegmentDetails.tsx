@@ -1,6 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import classNames from "classnames";
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 
 // @material-ui/core
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
@@ -14,7 +15,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 // @material-ui/icons
 import { PeopleAlt } from "@material-ui/icons";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 // services
@@ -35,11 +36,15 @@ import SegmentDetailsBehavior from "views/Segments/components/behavior/SegmentDe
 // view store
 import SegmentViewStore from "views/Segments/store/SegmentViewStore";
 
-import { grayColor, infoColor, primaryColor } from "assets/jss/material-dashboard-react";
+import {
+  grayColor,
+  infoColor,
+} from "assets/jss/material-dashboard-react";
 import useStyles from "assets/jss/material-dashboard-react/components/inputFieldStyle";
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+
 import SegmentDetailsTechnology from "views/Segments/components/technology/SegmentDetailsTechnology";
+
+import "react-circular-progressbar/dist/styles.css";
 
 const extraStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -47,7 +52,7 @@ const extraStyles = makeStyles((theme: Theme) =>
       marginTop: theme.typography.pxToRem(20)
     },
     title: {
-      opacity: .5,
+      opacity: 0.5,
       marginTop: theme.typography.pxToRem(10)
     },
     label: {
@@ -59,12 +64,12 @@ const extraStyles = makeStyles((theme: Theme) =>
       alignItems: "center"
     },
     heading: {
-      opacity: .5,
+      opacity: 0.5,
       fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular,
+      fontWeight: theme.typography.fontWeightRegular
     },
     cardTitle: {
-      opacity: .5,
+      opacity: 0.5,
       marginTop: "0px",
       minHeight: "auto",
       fontWeight: 300,
@@ -105,15 +110,20 @@ const extraStyles = makeStyles((theme: Theme) =>
         width: "17px!important",
         height: "17px!important",
         position: "relative",
-        opacity: .5
+        opacity: 0.5
       }
     }
-  }));
+  })
+);
 
 export default observer(() => {
   const classes = useStyles();
   const extraClasses = extraStyles();
-  const centerNote = classNames(classes.note, classes.center, extraClasses.label);
+  const centerNote = classNames(
+    classes.note,
+    classes.center,
+    extraClasses.label
+  );
   const percentage = 90;
   return (
     <GridContainer>
@@ -121,16 +131,25 @@ export default observer(() => {
         <Card>
           <CardBody>
             <Grid container item direction="row">
-              <Grid item xs={3} sm={2} md={2} className={extraClasses.titleWrapper}>
+              <Grid
+                item
+                xs={3}
+                sm={2}
+                md={2}
+                className={extraClasses.titleWrapper}
+              >
                 <Typography variant="subtitle2" className={centerNote}>
                   {Dictionary.defValue(DictionaryService.keys.name)}:
                 </Typography>
               </Grid>
               <Grid item xs={6} sm={8} md={7}>
-                <BootstrapInput fullWidth/>
+                <BootstrapInput fullWidth />
               </Grid>
-              <Grid item xs={3} sm={2} md={3} className={classes.textToRight} >
-                <Button color="primary" onClick={() => SegmentViewStore.clearAll()}>
+              <Grid item xs={3} sm={2} md={3} className={classes.textToRight}>
+                <Button
+                  color="primary"
+                  onClick={() => SegmentViewStore.clearAll()}
+                >
                   {Dictionary.defValue(DictionaryService.keys.resetAll)}
                 </Button>
               </Grid>
@@ -148,7 +167,7 @@ export default observer(() => {
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <SegmentDetailsUser/>
+            <SegmentDetailsUser />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -162,7 +181,7 @@ export default observer(() => {
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <SegmentDetailsBehavior/>
+            <SegmentDetailsBehavior />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
@@ -176,7 +195,7 @@ export default observer(() => {
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <SegmentDetailsTechnology/>
+            <SegmentDetailsTechnology />
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <Card>
@@ -186,7 +205,7 @@ export default observer(() => {
               onClick={() => SegmentViewStore.saveSegment()}
               loading={false}
               text={Dictionary.defValue(DictionaryService.keys.save)}
-              startIcon={<CloudUploadIcon/>}
+              startIcon={<CloudUploadIcon />}
             />
           </CardFooter>
         </Card>
@@ -194,13 +213,19 @@ export default observer(() => {
       <GridItem xs={12} sm={12} md={4}>
         <Card chart>
           <CardHeader>
-            <h4 className={extraClasses.cardTitle}>{Dictionary.defValue(DictionaryService.keys.segmentDetails)}</h4>
+            <h4 className={extraClasses.cardTitle}>
+              {Dictionary.defValue(DictionaryService.keys.segmentDetails)}
+            </h4>
             <CircularProgressbar
               className={extraClasses.container}
               value={percentage}
               text={`${percentage}%`}
               strokeWidth={4}
-              styles={buildStyles({ rotation: 0.05, pathColor: infoColor[0], textColor: infoColor[0] })}
+              styles={buildStyles({
+                rotation: 0.05,
+                pathColor: infoColor[0],
+                textColor: infoColor[0]
+              })}
             />
           </CardHeader>
           <CardBody>
@@ -213,17 +238,20 @@ export default observer(() => {
           </CardBody>
           <CardFooter chart>
             <div className={extraClasses.stats}>
-              <PeopleAlt/> {Dictionary.defValue(DictionaryService.keys.known)}: 90
+              <PeopleAlt /> {Dictionary.defValue(DictionaryService.keys.known)}:
+              90
             </div>
             <div className={extraClasses.stats}>
-              <PeopleAlt/> {Dictionary.defValue(DictionaryService.keys.unknown)}: 10
+              <PeopleAlt />{" "}
+              {Dictionary.defValue(DictionaryService.keys.unknown)}: 10
             </div>
             <div className={extraClasses.stats}>
-              <PeopleAlt/> {Dictionary.defValue(DictionaryService.keys.reachable)}: 50
+              <PeopleAlt />{" "}
+              {Dictionary.defValue(DictionaryService.keys.reachable)}: 50
             </div>
           </CardFooter>
         </Card>
       </GridItem>
     </GridContainer>
-  )
-})
+  );
+});

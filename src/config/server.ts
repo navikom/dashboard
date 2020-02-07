@@ -1,5 +1,5 @@
 const domain = "http://localhost:3001";
 export default {
   domain,
-  mainApi: `${domain}/v1`,
-}
+  mainApi: `${domain}/v1`
+};

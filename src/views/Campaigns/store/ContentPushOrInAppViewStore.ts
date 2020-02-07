@@ -1,19 +1,16 @@
 import {action, observable} from "mobx";
 import {ContentDeviceViewStore} from "views/Campaigns/store/ContentDeviceViewStore";
-import {IInAppVariant, IMobileMessage, IPushVariant} from "interfaces/IVariant";
+import {IMobileMessage} from "interfaces/IVariant";
 import {IContentPushOrInApp} from "interfaces/IContentStep";
 
 export class ContentPushOrInAppViewStore extends ContentDeviceViewStore implements IContentPushOrInApp {
 
- @observable keyValueEnabled: boolean = false;
- constructor(variant: IPushVariant | IInAppVariant) {
-  super(variant);
- }
+ @observable keyValueEnabled = false;
 
  @action updateKeyValuePair(index: number, key: string, value: string): void {
   const data = this.variant.data as IMobileMessage;
   data.updateKeyValuePair(index, key, value);
- };
+ }
 
  @action deleteKeyValue(index: number): void {
   const data = this.variant.data as IMobileMessage;
@@ -41,12 +38,12 @@ export class ContentPushOrInAppViewStore extends ContentDeviceViewStore implemen
  @action setKeyValueEnabled(): void {
   this.keyValueEnabled = true;
   this.createKeyValue();
- };
+ }
 
  @action setKeyValueDisabled(): void {
   this.keyValueEnabled = false;
   this.clear();
- };
+ }
 
  @action updateKey(index: number, key: string): void {
   const data = this.variant.data as IMobileMessage;

@@ -28,8 +28,8 @@ const constraints = {
 
 class AppDataLocalStore extends Errors implements IAppDataLocal {
 
-  @observable fetching: boolean = false;
-  @observable open: boolean = false;
+  @observable fetching = false;
+  @observable open = false;
   @observable app: IApp | null = null;
   @observable description?: string;
   @observable files: any;
@@ -37,13 +37,13 @@ class AppDataLocalStore extends Errors implements IAppDataLocal {
   readonly routes = observable<IRoute>([]);
   tabs!: IAppTab[];
 
-  loading: boolean = false;
+  loading = false;
 
   disposer?: IReactionDisposer;
 
   @computed get isChanged() {
-    return this.app !== null && this.app.description !== this.description || (this.files !== undefined && this.files.length);
-  };
+    return this.app !== null && (this.app.description !== this.description || (this.files !== undefined && this.files.length));
+  }
 
   @computed get isDisabled() {
     return !this.isChanged || Object.keys(this.errors).length > 0 || this.fetching;
@@ -66,7 +66,7 @@ class AppDataLocalStore extends Errors implements IAppDataLocal {
     }
   }
 
-  @action setFetching(value: boolean = true) {
+  @action setFetching(value = true) {
     this.fetching = value;
   }
 

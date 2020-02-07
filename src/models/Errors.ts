@@ -3,7 +3,7 @@ import { IErrors } from "interfaces/IErrors";
 
 export class Errors implements IErrors {
   @observable error: string | null = null;
-  @observable successRequest: boolean = false;
+  @observable successRequest = false;
   private timeOutId?: NodeJS.Timeout;
 
   @computed get hasError(): boolean {

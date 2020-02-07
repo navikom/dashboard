@@ -33,7 +33,10 @@ export interface IReachability {
   value: ChannelType;
 }
 
-export type AttributeType = IAttribute | (IAttribute | AndType | OrType)[] | null;
+export type AttributeType =
+  | IAttribute
+  | (IAttribute | AndType | OrType)[]
+  | null;
 
 export interface IUserTab {
   visitorType: INumberOfSessions;
@@ -44,7 +47,10 @@ export interface IUserTab {
 
   updateVisitor(name: string): void;
   updateVisitorCondition(is: NumberTypes): void;
-  updateVisitorConditionValue(value: number | number[], key: "values" | "value" | "min" | "max"): void;
+  updateVisitorConditionValue(
+    value: number | number[],
+    key: "values" | "value" | "min" | "max"
+  ): void;
   updateLastSeen(is?: DateTypes): void;
   updateLastSeenValue(date: Date, key: "date" | "from" | "to"): void;
   updateReachabilityOn(value: string): void;
@@ -54,7 +60,7 @@ export interface IUserTab {
 }
 
 export interface IOccurs {
-  is?: AtLeastOnceType | OnceType | NumberTypes,
+  is?: AtLeastOnceType | OnceType | NumberTypes;
   value?: number | boolean | number[];
   min?: number;
   max?: number;
@@ -65,7 +71,10 @@ interface IBehaviorEvent {
   occurs: IOccurs;
 }
 
-type BehaviorType = IBehaviorEvent | (IBehaviorEvent | AndType | OrType)[] | null;
+type BehaviorType =
+  | IBehaviorEvent
+  | (IBehaviorEvent | AndType | OrType)[]
+  | null;
 
 export interface IBehaviorTab {
   usersWhoDidEvents: BehaviorType;

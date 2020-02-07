@@ -11,7 +11,7 @@ export class TriggerRunStore implements ITriggerRun {
   readonly type: RunType = TRIGGER_RUN_TYPE;
 
   @observable eventName?: string;
-  @observable sendAsOccurs: boolean = true;
+  @observable sendAsOccurs = true;
   @observable waitFor?: number;
   @observable startDate?: Date;
   @observable endDate: Date | null = null;

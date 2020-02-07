@@ -38,7 +38,9 @@ export default observer(() => {
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>{Dictionary.defValue(DictionaryService.keys.roles)}</h4>
+            <h4 className={classes.cardTitleWhite}>
+              {Dictionary.defValue(DictionaryService.keys.roles)}
+            </h4>
             <p className={classes.cardCategoryWhite}>
               {Dictionary.defValue(DictionaryService.keys.rolesList)}
             </p>
@@ -46,12 +48,14 @@ export default observer(() => {
           <CardBody>
             <Table
               tableHeaderColor="primary"
-              tableHead={["ID",
+              tableHead={[
+                "ID",
                 Dictionary.defValue(DictionaryService.keys.title),
                 Dictionary.defValue(DictionaryService.keys.createdAt),
                 Dictionary.defValue(DictionaryService.keys.updatedAt),
                 Dictionary.defValue(DictionaryService.keys.deletedAt),
-                ""]}
+                ""
+              ]}
               tableData={Roles.tableData}
               onRowClick={(e: any, i: number) => Roles.setCurrentRow(e[1], i)}
             />
@@ -72,10 +76,12 @@ export default observer(() => {
                   }}
                   inputProps={{
                     onFocus: () => Roles.setCurrentRow("", -1),
-                    onChange: (e: React.ChangeEvent<HTMLInputElement>) => Roles.onInput({ name: e.target.value }),
+                    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                      Roles.onInput({ name: e.target.value }),
                     value: Roles.name
                   }}
-                  labelText={Dictionary.defValue(DictionaryService.keys.title)}/>
+                  labelText={Dictionary.defValue(DictionaryService.keys.title)}
+                />
               </Grid>
               <Grid item lg={1} xs={3}>
                 <ProgressButton
@@ -85,7 +91,7 @@ export default observer(() => {
                   loading={Roles.fetching}
                   color="primary"
                   text={Dictionary.defValue(DictionaryService.keys.add)}
-                  startIcon={<CloudUploadIcon/>}
+                  startIcon={<CloudUploadIcon />}
                 />
               </Grid>
             </Grid>
@@ -95,7 +101,10 @@ export default observer(() => {
           place="br"
           color="info"
           icon={AddAlert}
-          message={Dictionary.defValue(DictionaryService.keys.dataSavedSuccessfully, "Role")}
+          message={Dictionary.defValue(
+            DictionaryService.keys.dataSavedSuccessfully,
+            "Role"
+          )}
           open={Roles.successRequest}
           closeNotification={() => Roles.setSuccessRequest(false)}
           close
@@ -104,7 +113,10 @@ export default observer(() => {
           place="br"
           color="danger"
           icon={Clear}
-          message={Dictionary.defValue(DictionaryService.keys.dataSaveError, ["Role", Roles.error || ""])}
+          message={Dictionary.defValue(DictionaryService.keys.dataSaveError, [
+            "Role",
+            Roles.error || ""
+          ])}
           open={Roles.hasError}
           closeNotification={() => Roles.setError(null)}
           close

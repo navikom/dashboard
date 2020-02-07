@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { RouteComponentProps } from "react-router";
 
 // @material-ui/core components
 import AppBar from "@material-ui/core/AppBar";
@@ -37,11 +36,11 @@ function nav(props: any, classes: any) {
       </Button>
     );
   });
-};
+}
 
 function Header({ ...props }) {
   function makeBrand() {
-    let name = "Webinsolut";
+    const name = "Webinsolut";
     // props.routes.map((prop, key) => {
     //   if (prop.url === props.location.pathname) {
     //     name = props.rtlActive ? prop.rtlName : prop.name;

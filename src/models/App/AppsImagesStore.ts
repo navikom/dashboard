@@ -8,7 +8,7 @@ export class AppsImagesStore implements IAppsImages {
   @observable private storePath?: string;
   @observable private storeFolder?: string;
 
-  path(width: number = 300): string {
+  path(width = 300): string {
     return computed(() =>
       `${this.storePath}/image/upload/h_${width}/${this.storeFolder}/${this.imageId}`).get();
   }

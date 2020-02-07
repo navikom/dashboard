@@ -60,12 +60,12 @@ const extraStyles = makeStyles((theme: Theme) =>
 
 const TestStep = () => {
 
- const store = CampaignViewStore.testStepStore;
- if (!store) return null;
-
  const classes = useStyles();
  const extraClasses = extraStyles();
  const centerNote = classNames(classes.note, classes.center, classes.textToRight, extraClasses.label);
+
+ const store = CampaignViewStore.testStepStore;
+ if (!store) return null;
 
  return (
    <Card>

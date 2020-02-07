@@ -21,12 +21,12 @@ export default observer(() => {
   };
 
   const values = SegmentViewStore.lastSeenValues;
-  let second = {
+  const second = {
     ...values,
     onChange: (e: Date, key: "from" | "to") => SegmentViewStore.updateLastSeenValue(e, key)
   };
 
-  let third = values.from ? {
+  const third = values.from ? {
     ...SegmentViewStore.lastSeenValues,
     onChange: (e: Date, key: "from" | "to") => SegmentViewStore.updateLastSeenValue(e, key)
   } : undefined;

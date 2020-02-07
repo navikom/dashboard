@@ -11,7 +11,7 @@ export class RegionStore implements IRegion {
   regionId: number;
   timezone!: string;
 
-  pk: string = "regionId";
+  pk = "regionId";
 
   get plainData() {
     const data = [

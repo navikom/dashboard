@@ -9,7 +9,7 @@ import {
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "components/CustomButtons/Button.tsx";
 import Icon from "@material-ui/core/Icon";
-import RootRef, { RootRefProps } from "@material-ui/core/RootRef";
+import RootRef from "@material-ui/core/RootRef";
 import { createStyles } from "@material-ui/core";
 import { ScrollService } from "services/ScrollService";
 import { useIsomorphicLayoutEffect } from "utils/isomorphicEffect";

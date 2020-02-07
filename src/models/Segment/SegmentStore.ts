@@ -10,7 +10,7 @@ export class SegmentStore implements ISegment {
   @observable behaviorTab?: IBehaviorTab;
   @observable technologyTab?: ITechnologyTab;
 
-  pk: string = "segmentId";
+  pk = "segmentId";
 
   constructor(model: ISegment) {
     this.segmentId = model.segmentId;

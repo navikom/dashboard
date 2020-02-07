@@ -9,7 +9,9 @@ export interface IRoute {
   name: string;
   rtlName: string;
   icon?: React.ComponentType<SvgIconProps> | string;
-  component: React.ComponentType<any> | React.ComponentType<RouteComponentProps<any>>;
+  component:
+    | React.ComponentType<any>
+    | React.ComponentType<RouteComponentProps<any>>;
   layout: string;
   auth?: boolean;
   category?: string;

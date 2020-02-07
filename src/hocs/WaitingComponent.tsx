@@ -1,9 +1,10 @@
 import React, { Suspense } from "react";
 
 export default function WaitingComponent(Component: any) {
-  return (props: any) => (
+  const Item = (props: any) => (
     <Suspense fallback={<div>Loading...</div>}>
       <Component {...props} />
     </Suspense>
   );
+  return Item;
 }

@@ -17,7 +17,8 @@ import {
 } from "assets/jss/material-dashboard-react.ts";
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
-export default makeStyles((theme: Theme) => createStyles({
+export default makeStyles((theme: Theme) =>
+  createStyles({
     drawerPaper: {
       border: "none",
       position: "fixed",
@@ -67,7 +68,7 @@ export default makeStyles((theme: Theme) => createStyles({
       padding: "15px 15px",
       zIndex: 4,
       "&:after": {
-        content: "\"\"",
+        content: '""',
         position: "absolute",
         bottom: "0",
 
@@ -127,7 +128,7 @@ export default makeStyles((theme: Theme) => createStyles({
         zIndex: 3,
         width: "100%",
         height: "100%",
-        content: "\"\"",
+        content: '""',
         display: "block",
         background: blackColor,
         opacity: ".8"
@@ -161,7 +162,7 @@ export default makeStyles((theme: Theme) => createStyles({
       backgroundColor: "transparent",
       ...defaultFont,
       "&:hover": {
-        backgroundColor: whiteOpacity(.2)
+        backgroundColor: whiteOpacity(0.2)
       }
     },
     itemIcon: {
@@ -188,7 +189,7 @@ export default makeStyles((theme: Theme) => createStyles({
       color: whiteColor
     },
     categoryText: {
-      opacity: .6,
+      opacity: 0.6,
       textAlign: "center"
     },
     itemTextRTL: {

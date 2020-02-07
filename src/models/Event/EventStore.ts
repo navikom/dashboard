@@ -10,7 +10,7 @@ import {IDevice} from "interfaces/IDevice";
 import {IRegion} from "interfaces/IRegion";
 
 export class EventStore implements IEvent {
-  pk: string = "eventId";
+  pk = "eventId";
   userId!: number;
   createdAt!: Date;
   eventId!: number;

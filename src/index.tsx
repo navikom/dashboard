@@ -25,12 +25,21 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Router history={hist}>
       <Switch>
-        <Route path={Constants.PANEL_ROUTE} component={WaitingComponent(Panel)}/>
-        <Route path={Constants.LOGIN_ROUTE} component={WaitingComponent(Main)}/>
-        <Route path={Constants.SIGN_UP_ROUTE} component={WaitingComponent(Main)}/>
-        <Route path={Constants.ROOT_ROUTE} component={WaitingComponent(Main)}/>
-        <Redirect to={Constants.START_PAGE_ROUTE}/>
-        <Route path="*" component={WaitingComponent(Panel)}/>
+        <Route
+          path={Constants.PANEL_ROUTE}
+          component={WaitingComponent(Panel)}
+        />
+        <Route
+          path={Constants.LOGIN_ROUTE}
+          component={WaitingComponent(Main)}
+        />
+        <Route
+          path={Constants.SIGN_UP_ROUTE}
+          component={WaitingComponent(Main)}
+        />
+        <Route path={Constants.ROOT_ROUTE} component={WaitingComponent(Main)} />
+        <Redirect to={Constants.START_PAGE_ROUTE} />
+        <Route path="*" component={WaitingComponent(Panel)} />
       </Switch>
     </Router>
   </ThemeProvider>,

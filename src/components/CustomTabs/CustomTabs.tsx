@@ -47,9 +47,7 @@ const CustomTabs = ({ ...props }: CustomTabsProps) => {
   return (
     <Card plain={plainTabs}>
       <CardHeader color={headerColor} plain={plainTabs}>
-        {title !== undefined ? (
-          <div className={cardTitle}>{title}</div>
-        ) : null}
+        {title !== undefined ? <div className={cardTitle}>{title}</div> : null}
         <Tabs
           value={value}
           onChange={handleChange}
@@ -65,7 +63,7 @@ const CustomTabs = ({ ...props }: CustomTabsProps) => {
             let icon = {};
             if (prop.tabIcon) {
               icon = {
-                icon: <prop.tabIcon/>
+                icon: <prop.tabIcon />
               };
             }
             return (
@@ -88,7 +86,15 @@ const CustomTabs = ({ ...props }: CustomTabsProps) => {
       <CardBody>
         {tabs.map((prop: any, key: number) => {
           if (key === value) {
-            return <div key={key}>{React.isValidElement(prop.tabContent) ? prop.tabContent : <prop.tabContent />}</div>;
+            return (
+              <div key={key}>
+                {React.isValidElement(prop.tabContent) ? (
+                  prop.tabContent
+                ) : (
+                  <prop.tabContent />
+                )}
+              </div>
+            );
           }
           return null;
         })}

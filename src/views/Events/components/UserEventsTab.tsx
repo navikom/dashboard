@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { observer } from "mobx-react-lite";
 import classNames from "classnames";
 
@@ -34,34 +34,49 @@ const useInfoStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const InfoItem = ({ ...props }) => {
+type InfoItemType = {
+  title: string;
+  data: string[][];
+}
+
+function InfoItem(props: InfoItemType) {
   const classes = useInfoStyles();
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12} sm={12} md={12}>
-        <Chip label={props.title}/>
+        <Chip label={props.title} />
       </Grid>
-      {props.data.map((prop: [string, string], key: number) => <ExpansionDataItems key={key} title={prop[0]}
-                                                                                   data={prop[1]}/>)}
+      {props.data.map((prop: string[], key: number) => (
+        <ExpansionDataItems key={key} title={prop[0]} data={prop[1]} />
+      ))}
     </Grid>
   );
-};
+}
 
-const EventInfo = ({ ...props }) => {
+type EventInfoType = {
+  data: IEvent;
+}
+
+function EventInfo(props: EventInfoType) {
   return (
     <Grid container>
-      <InfoItem title="Device" data={props.data.device.plainData}/>
-      <InfoItem title="Region" data={props.data.region.plainData}/>
-      {props.data.app && <InfoItem title="App" data={props.data.app.plainData}/>}
-      {
-        props.data.data &&
+      <InfoItem title="Device" data={props.data.device.plainData} />
+      <InfoItem title="Region" data={props.data.region.plainData} />
+      {props.data.app && (
+        <InfoItem title="App" data={props.data.app.plainData} />
+      )}
+      {props.data.info && (
         <InfoItem
           title="Custom"
-          data={Object.keys(props.data.data).map((k) => [k, JSON.stringify(props.data.data[k])])}/>
-      }
+          data={Object.keys(props.data.info).map(k => [
+            k,
+            props.data.info && props.data.info[k] ? JSON.stringify(props.data.info[k]) : ""
+          ])}
+        />
+      )}
     </Grid>
   );
-};
+}
 
 const ExpansionPanel = withStyles({
   root: {
@@ -141,7 +156,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const UserEventsTab = observer((props: { events: IUsersEvents }) => {
+function UserEventsTab(props: { events: IUsersEvents }) {
   const classes = useStyles();
 
   const isMobile = window.outerWidth < 1000;
@@ -168,39 +183,43 @@ const UserEventsTab = observer((props: { events: IUsersEvents }) => {
   });
   return (
     <div className={classes.root}>
-      {
-        props.events.items.map((event: IEvent, key: number) => (
-          <ExpansionPanel square key={key} className={classes.overflow}>
-            <ExpansionPanelSummary
-              expandIcon={<ExpandMoreIcon/>}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Box display="flex">
-                <Box className={leftSpace}>{Dictionary.timeDateString(event.createdAt)}</Box>
-                <Box className={classes.icon}><Lens/></Box>
-                <Box className={classes.titleContent}>{event.title}</Box>
+      {props.events.items.map((event: IEvent, key: number) => (
+        <ExpansionPanel square key={key} className={classes.overflow}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Box display="flex">
+              <Box className={leftSpace}>
+                {Dictionary.timeDateString(event.createdAt)}
               </Box>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Box className={leftContentSpace}/>
-              <Box className={content}>
-                <EventInfo data={event}/>
+              <Box className={classes.icon}>
+                <Lens />
               </Box>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-        ))
-      }
-      {!isMobile && <div className={line}/>}
-      {
-        props.events.size > 0 ? (
-          !props.events.allFetched &&
-          <ProgressButton onClick={onClick} loading={props.events.fetching} text="Loading more"/>
-          ) : Dictionary.defValue(DictionaryService.keys.thereIsNoEventsYet)
-
-      }
+              <Box className={classes.titleContent}>{event.title}</Box>
+            </Box>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Box className={leftContentSpace} />
+            <Box className={content}>
+              <EventInfo data={event} />
+            </Box>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      ))}
+      {!isMobile && <div className={line} />}
+      {props.events.size > 0
+        ? !props.events.allFetched && (
+            <ProgressButton
+              onClick={onClick}
+              loading={props.events.fetching}
+              text="Loading more"
+            />
+          )
+        : Dictionary.defValue(DictionaryService.keys.thereIsNoEventsYet)}
     </div>
   );
-});
+}
 
-export default UserEventsTab;
+export default observer(UserEventsTab);

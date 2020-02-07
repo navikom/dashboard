@@ -1,5 +1,5 @@
-import {EmailType, InAppType, PushType, SmsType} from "types/commonTypes";
-import {IObservableArray} from "mobx";
+import { EmailType, InAppType, PushType, SmsType } from "types/commonTypes";
+import { IObservableArray } from "mobx";
 
 export interface ISMSMessage {
   sender: string;
@@ -110,7 +110,7 @@ interface IPopoutInAppLayout {
   personalize: IPersonalize;
   button: IButton;
   bgColor: string;
-  image: string // 120x90 (4:3)
+  image: string; // 120x90 (4:3)
 }
 
 interface IClassicInAppLayout {
@@ -136,8 +136,13 @@ interface IBlockerInAppLayout {
   button: IButton;
 }
 
-type LayoutInAppType = IHeaderInAppLayout | IFooterInAppLayout | IPopoutInAppLayout | IClassicInAppLayout |
-  IFullScreenInAppLayout | IBlockerInAppLayout;
+type LayoutInAppType =
+  | IHeaderInAppLayout
+  | IFooterInAppLayout
+  | IPopoutInAppLayout
+  | IClassicInAppLayout
+  | IFullScreenInAppLayout
+  | IBlockerInAppLayout;
 
 export interface IInAppVariant extends IVariantCommon {
   channel: InAppType;
@@ -170,5 +175,9 @@ export interface IPushVariant extends IVariantCommon {
   data: IPushMessage;
 }
 
-export type VariantType = IEmailVariant | ISMSVariant | IInAppVariant | IPushVariant;
+export type VariantType =
+  | IEmailVariant
+  | ISMSVariant
+  | IInAppVariant
+  | IPushVariant;
 export type MobileVariantType = ISMSVariant | IPushVariant | IInAppVariant;

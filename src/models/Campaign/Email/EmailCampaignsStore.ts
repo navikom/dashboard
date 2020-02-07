@@ -1,7 +1,7 @@
 import { ChannelCampaigns } from "models/Campaign/ChannelCampaigns";
 import { IChannelCampaigns } from "interfaces/IChannelCampaigns";
 import { ICampaign } from "interfaces/ICampaign";
-import { EMAIL_CAMPAIGN, EMAIL_CHANNEL, SMS_CHANNEL } from "models/Constants";
+import { EMAIL_CAMPAIGN, EMAIL_CHANNEL } from "models/Constants";
 import { ChannelType } from "types/commonTypes";
 
 class EmailCampaignsStore extends ChannelCampaigns implements IChannelCampaigns<ICampaign> {

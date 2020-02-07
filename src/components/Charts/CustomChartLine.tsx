@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Chart } from "react-google-charts";
 
-export const CustomChartLine = ({...props}) => {
-  const [chartData] = useState([]);
+export const CustomChartLine = () => {
   return (
     <Chart
       width={"100%"}
@@ -11,10 +10,10 @@ export const CustomChartLine = ({...props}) => {
       loader={<div>Loading Chart</div>}
       data={[
         [
-          'Day',
-          'Guardians of the Galaxy',
-          'The Avengers',
-          'Transformers: Age of Extinction',
+          "Day",
+          "Guardians of the Galaxy",
+          "The Avengers",
+          "Transformers: Age of Extinction"
         ],
         [1, 37.8, 80.8, 41.8],
         [2, 30.9, 69.5, 32.4],
@@ -29,28 +28,28 @@ export const CustomChartLine = ({...props}) => {
         [11, 5.3, 7.9, 4.7],
         [12, 6.6, 8.4, 5.2],
         [13, 4.8, 6.3, 3.6],
-        [14, 4.2, 6.2, 3.4],
+        [14, 4.2, 6.2, 3.4]
       ]}
       options={{
         chart: {
-          title: 'Box Office Earnings in First Two Weeks of Opening',
-          subtitle: 'in millions of dollars (USD)',
+          title: "Box Office Earnings in First Two Weeks of Opening",
+          subtitle: "in millions of dollars (USD)"
         },
         animation: {
           startup: true,
-          easing: 'linear',
-          duration: 1500,
+          easing: "linear",
+          duration: 1500
         },
-        enableInteractivity: false,
+        enableInteractivity: false
       }}
       chartEvents={[
         {
-          eventName: 'animationfinish',
+          eventName: "animationfinish",
           callback: () => {
-            console.log('Animation Finished')
-          },
-        },
+            console.log("Animation Finished");
+          }
+        }
       ]}
     />
-  )
+  );
 };

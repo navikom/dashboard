@@ -20,16 +20,15 @@ const styles = createStyles({
     fontWeight: 300,
     fontFamily: "'Josefin Sans', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
-    textDecoration: "none",
-
+    textDecoration: "none"
   },
-  "small": {
+  small: {
     color: "#777",
     fontSize: "65%",
     fontWeight: 400,
     lineHeight: "1"
   },
-  "titleWhite": {
+  titleWhite: {
     fontWeight: 700,
     textAlign: "center"
   },

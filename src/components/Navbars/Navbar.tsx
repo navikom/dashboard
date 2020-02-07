@@ -17,14 +17,22 @@ import Button from "components/CustomButtons/Button.tsx";
 import useStyles from "assets/jss/material-dashboard-react/components/headerStyle";
 import { IRoute } from "interfaces/IRoute";
 
-
-
-
 interface IHeader extends RouteComponentProps {
   routes: (google.maps.DirectionsRoute & IRoute)[];
   rtlActive: boolean;
-  color: "appBar" | "container" | "flex" | "title" | "adminTitle" | "link" | "appResponsive" | "primary"
-  | "info" | "success" | "warning" | "danger";
+  color:
+    | "appBar"
+    | "container"
+    | "flex"
+    | "title"
+    | "adminTitle"
+    | "link"
+    | "appResponsive"
+    | "primary"
+    | "info"
+    | "success"
+    | "warning"
+    | "danger";
   handleDrawerToggle(): void;
 }
 
@@ -34,8 +42,10 @@ export default (props: IHeader) => {
     let name = "Page didn't find.";
 
     props.routes.map((prop: google.maps.DirectionsRoute & IRoute) => {
-      if (props.location.pathname.includes(prop.layout + prop.url)
-        || props.location.pathname.includes(prop.layout + prop.path)) {
+      if (
+        props.location.pathname.includes(prop.layout + prop.url) ||
+        props.location.pathname.includes(prop.layout + prop.path)
+      ) {
         name = props.rtlActive ? prop.rtlName : prop.name;
       }
       return null;
@@ -57,7 +67,11 @@ export default (props: IHeader) => {
           </Button>
         </div>
         <Hidden smDown implementation="css">
-          {props.rtlActive ? <RTLNavbarLinks history={history}/> : <AdminNavbarLinks {...props}/>}
+          {props.rtlActive ? (
+            <RTLNavbarLinks history={history} />
+          ) : (
+            <AdminNavbarLinks {...props} />
+          )}
         </Hidden>
         <Hidden mdUp implementation="css">
           <IconButton
@@ -71,4 +85,4 @@ export default (props: IHeader) => {
       </Toolbar>
     </AppBar>
   );
-}
+};

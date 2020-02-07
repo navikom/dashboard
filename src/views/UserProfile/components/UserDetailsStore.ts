@@ -102,9 +102,9 @@ class PersonalDataStore extends Validate {
 }
 
 class ChangePasswordStore extends Validate {
-  @observable password: string = "";
-  @observable confirmPassword: string = "";
-  @observable newPassword: string = "";
+  @observable password = "";
+  @observable confirmPassword = "";
+  @observable newPassword = "";
 
   @action onInput(key: PasswordType, value: string) {
     const object = {password: this.password, newPassword: this.newPassword, confirmPassword: this.confirmPassword};
@@ -123,7 +123,7 @@ class ChangePasswordStore extends Validate {
 class UserDetailsStore extends Errors {
   @observable user?: IUser;
   @observable personalDataStore = new PersonalDataStore();
-  @observable fetching: boolean = false;
+  @observable fetching = false;
   @observable passwordStore = new ChangePasswordStore();
   @observable currentReferral?: IUser;
 

@@ -5,7 +5,7 @@ import settings from "config/server";
 export abstract class HttpBase {
  url: string;
  session: number | null;
- debug: boolean = true;
+ debug = true;
  currentRequests: {[k: string]: any} = {};
 
  protected constructor(url: string, session: number | null) {

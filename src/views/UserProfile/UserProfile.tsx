@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { when } from "mobx";
-import { observer, useDisposable, useObserver } from "mobx-react-lite";
-import { RouteComponentProps } from "react-router";
+import { observer, useDisposable } from "mobx-react-lite";
 
 // @material-ui/icons
 import {
@@ -34,12 +33,6 @@ const UserCredentials = lazy(() => import("views/UserProfile/components/UserCred
 const UserReferrals = lazy(() => import("views/UserProfile/components/UserReferrals"));
 const UserReferralDetails = lazy(() => import("views/UserProfile/components/UserReferralDetails"));
 
-type UserMatch = {
-  userId: string;
-}
-
-export interface UserProfileProps extends RouteComponentProps<UserMatch> {
-}
 
 const Profile = observer(() => {
   if (!UserDetails.user) return null;
@@ -98,7 +91,7 @@ const Profile = observer(() => {
   );
 });
 
-const UserProfile = (props: UserProfileProps) => {
+function UserProfile() {
 
   const dispose = useDisposable(() =>
     when(() => App.sessionIsReady, async () => {
@@ -114,6 +107,6 @@ const UserProfile = (props: UserProfileProps) => {
   });
 
   return <Profile/>;
-};
+}
 
 export default UserProfile;

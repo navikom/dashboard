@@ -1,7 +1,6 @@
 import {action, computed, observable} from "mobx";
 import {ITestSegment} from "interfaces/ITestStep";
 import {ITestSegments} from "interfaces/ITestSegments";
-import {TestSegmentStore} from "models/Campaign/TestSegmentStore";
 import {Errors} from "models/Errors";
 import {IErrors} from "interfaces/IErrors";
 

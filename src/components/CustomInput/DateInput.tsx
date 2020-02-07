@@ -26,14 +26,14 @@ const CustomDateInput = ({ ...props }) => {
 
 export default withStyles({
   input: {
-    padding: "11px 12px",
+    padding: "11px 12px"
   },
   picker: {
     marginTop: 0,
     marginBottom: 0,
     "&:hover": {
       borderWidth: 1,
-      borderColor: primaryColor[0],
+      borderColor: primaryColor[0]
     },
     "&:focus": {
       borderWidth: 1,

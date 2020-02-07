@@ -2,12 +2,9 @@ import React from "react";
 import { observer, useDisposable } from "mobx-react-lite";
 import { when } from "mobx";
 import { RouteComponentProps } from "react-router";
-// @material-ui/core components
+
 // utils
 import { lazy } from "utils";
-
-// interfaces
-import { IUser } from "interfaces/IUser";
 
 // services
 import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
@@ -17,25 +14,26 @@ import { Users } from "models/User/UsersStore";
 import { App } from "models/App";
 import { USERS_LIST_ROUTE } from "models/Constants";
 
+// assets
+import useStyle from "assets/jss/material-dashboard-react/components/listStyle";
+
 // core components
 const Table = lazy(() => import("components/Table/TablePagination"));
 const Card = lazy(() => import("components/Card/Card.tsx"));
 const CardHeader = lazy(() => import("components/Card/CardHeader.tsx"));
 const CardBody = lazy(() => import("components/Card/CardBody.tsx"));
 
-import useStyle from "assets/jss/material-dashboard-react/components/listStyle";
-
 export default observer((props: RouteComponentProps) => {
-  useDisposable(() =>
-    when(() => App.sessionIsReady, () => Users.fetchItems())
-  );
+  useDisposable(() => when(() => App.sessionIsReady, () => Users.fetchItems()));
 
   const classes = useStyle();
 
   return (
     <Card>
       <CardHeader color="primary">
-        <h4 className={classes.cardTitleWhite}>{Dictionary.defValue(DictionaryService.keys.users)}</h4>
+        <h4 className={classes.cardTitleWhite}>
+          {Dictionary.defValue(DictionaryService.keys.users)}
+        </h4>
         <p className={classes.cardCategoryWhite}>
           {Dictionary.defValue(DictionaryService.keys.usersDashboard)}
         </p>
@@ -50,7 +48,8 @@ export default observer((props: RouteComponentProps) => {
               Dictionary.defValue(DictionaryService.keys.action),
               Dictionary.defValue(DictionaryService.keys.email),
               Dictionary.defValue(DictionaryService.keys.status),
-              Dictionary.defValue(DictionaryService.keys.activity)],
+              Dictionary.defValue(DictionaryService.keys.activity)
+            ],
             tableData: Users.userTableData
           }}
           paginationProps={{
@@ -61,7 +60,9 @@ export default observer((props: RouteComponentProps) => {
             onChangePage: Users.handleChangePageInView,
             onChangeRowsPerPage: Users.handleChangeRowsPerPage
           }}
-          onRowClick={(data: string[]) => props.history.push(USERS_LIST_ROUTE + "/" + data[0])}
+          onRowClick={(data: string[]) =>
+            props.history.push(USERS_LIST_ROUTE + "/" + data[0])
+          }
         />
       </CardBody>
     </Card>

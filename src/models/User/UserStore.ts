@@ -17,7 +17,6 @@ import { UsersApps } from "models/User/UsersApps";
 import { UsersDevices } from "models/User/UsersDevices";
 import { IPagination } from "interfaces/IPagination";
 import { UserReferralsStore } from "models/User/UserReferralsStore";
-import { IRole, RoleType } from "interfaces/IRole";
 import { ADMIN_ROLE, SUPER_ADMIN_ROLE } from "models/Constants";
 import { Roles } from "models/Role/RolesStore";
 import { IUsersRoles } from "interfaces/IUsersRoles";
@@ -36,7 +35,7 @@ export class UserStore implements IUser {
   email!: string;
   referrer!: number;
 
-  pk: string = "userId";
+  pk = "userId";
 
   @observable firstName!: string;
   @observable lastName!: string;
@@ -45,15 +44,15 @@ export class UserStore implements IUser {
   @observable updatedAt!: Date;
   @observable deletedAt!: Date;
   @observable birthday!: Date;
-  @observable emailVerified: boolean = false;
+  @observable emailVerified = false;
   @observable notificationEmail!: boolean;
-  @observable notificationSms: boolean = false;
-  @observable phoneVerified: boolean = false;
-  @observable subscription: boolean = false;
+  @observable notificationSms = false;
+  @observable phoneVerified = false;
+  @observable subscription = false;
   @observable events: IUsersEvents;
-  @observable eventsCount: number = 1;
+  @observable eventsCount = 1;
   @observable lastLogin!: number;
-  @observable fullDataLoaded: boolean = false;
+  @observable fullDataLoaded = false;
   @observable devices?: IUsersDevices[];
   @observable apps?: IUsersApps[];
   @observable referrals: IPagination<IUser>;
@@ -62,14 +61,13 @@ export class UserStore implements IUser {
 
   @computed
   get fullName(): string {
-    let name = (this.firstName ? this.firstName : "") + (this.lastName ? this.lastName : "");
+    const name = (this.firstName ? this.firstName : "") + (this.lastName ? this.lastName : "");
     return name.length ? name : "No name";
   }
 
   @computed
   get anonymousString(): string {
-    return true ? Dictionary.defValue(DictionaryService.keys.anonymous)
-      : Dictionary.defValue(DictionaryService.keys.loggedIn);
+    return Dictionary.defValue(DictionaryService.keys.anonymous);
   }
 
   @computed get isSuperAdmin() {
@@ -99,7 +97,7 @@ export class UserStore implements IUser {
     this.events = new UserEventsStore(userId);
   }
 
-  @action setFullDataLoaded(value: boolean = true) {
+  @action setFullDataLoaded(value = true) {
     this.fullDataLoaded = value;
   }
 

@@ -32,8 +32,7 @@ type UserMatch = {
   userId: string;
 }
 
-export interface UserItemProps extends RouteComponentProps<UserMatch> {
-}
+export type UserItemProps = RouteComponentProps<UserMatch>
 
 const UserItem = (props: UserItemProps) => {
   const userId = Number(props.match.params.userId);

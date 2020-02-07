@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import { Autocomplete } from "@material-ui/lab";
 import { primaryColor } from "assets/jss/material-dashboard-react";
 
 const Input = ({ ...props }) => {
-  return (
-    <TextField
-      {...props}
-      variant="outlined"
-      fullWidth
-    />
-  );
+  return <TextField {...props} variant="outlined" fullWidth />;
 };
 
 const AutocompleteInput = withStyles({
@@ -22,17 +16,17 @@ const AutocompleteInput = withStyles({
         padding: "10px 26px 10px 12px"
       },
       "&:hover fieldset": {
-        borderColor: primaryColor[0],
+        borderColor: primaryColor[0]
       },
       "&.Mui-focused fieldset": {
         borderWidth: "2px",
-        borderColor: primaryColor[0],
+        borderColor: primaryColor[0]
       }
     }
   }
 })(Input);
 
-export default ({...props}) => {
+function AutocompleteSelect({ ...props }) {
   return (
     <Autocomplete
       {...props}
@@ -40,7 +34,9 @@ export default ({...props}) => {
       multiple
       size="small"
       options={props.options}
-      getOptionLabel={props.getOptionLabel ? props.getOptionLabel : (option: string) => option}
+      getOptionLabel={
+        props.getOptionLabel ? props.getOptionLabel : (option: string) => option
+      }
       value={props.values}
       renderInput={params => (
         <AutocompleteInput
@@ -51,5 +47,7 @@ export default ({...props}) => {
         />
       )}
     />
-  )
+  );
 }
+
+export default AutocompleteSelect;

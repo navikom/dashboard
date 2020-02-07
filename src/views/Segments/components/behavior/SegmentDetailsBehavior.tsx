@@ -52,10 +52,14 @@ export default observer(() => {
   const eClasses = extraStyles();
 
   const isAddDidEventButton = SegmentEventViewStore.didEvents.length === 0;
-  const isAddDidNotDoEventButton = SegmentEventViewStore.didNotDoEvents.length === 0;
+  const isAddDidNotDoEventButton =
+    SegmentEventViewStore.didNotDoEvents.length === 0;
 
   const addOrResetHandler = (didEvents: boolean) => () => {
-    if ((didEvents && isAddDidEventButton) || (!didEvents && isAddDidNotDoEventButton)) {
+    if (
+      (didEvents && isAddDidEventButton) ||
+      (!didEvents && isAddDidNotDoEventButton)
+    ) {
       SegmentEventViewStore.addNewItem(didEvents);
     } else {
       SegmentViewStore.clearBehaviorEvents(didEvents);
@@ -72,20 +76,18 @@ export default observer(() => {
             </div>
           </Grid>
           <Grid item xs={6} sm={6} md={6} className={classes.textToRight}>
-            {
-              isAddDidEventButton ? (
-                <IconButton onClick={addOrResetHandler(true)}>
-                  <AddCircleOutline color="primary"/>
-                </IconButton>
-              ) : (
-                <Button color="primary" onClick={addOrResetHandler(true)}>
-                  {Dictionary.defValue(DictionaryService.keys.reset)}
-                </Button>
-              )
-            }
+            {isAddDidEventButton ? (
+              <IconButton onClick={addOrResetHandler(true)}>
+                <AddCircleOutline color="primary" />
+              </IconButton>
+            ) : (
+              <Button color="primary" onClick={addOrResetHandler(true)}>
+                {Dictionary.defValue(DictionaryService.keys.reset)}
+              </Button>
+            )}
           </Grid>
         </Grid>
-        <BehaviorEventComponent didEvents={true}/>
+        <BehaviorEventComponent didEvents={true} />
       </div>
       <AndOrButton
         isAnd={SegmentEventViewStore.and}
@@ -97,24 +99,24 @@ export default observer(() => {
         <Grid container>
           <Grid item xs={6} sm={6} md={6}>
             <div className={eClasses.title}>
-              {Dictionary.defValue(DictionaryService.keys.usersWhoDidNotDoEvents)}
+              {Dictionary.defValue(
+                DictionaryService.keys.usersWhoDidNotDoEvents
+              )}
             </div>
           </Grid>
           <Grid item xs={6} sm={6} md={6} className={classes.textToRight}>
-            {
-              isAddDidNotDoEventButton ? (
-                <IconButton onClick={addOrResetHandler(false)}>
-                  <AddCircleOutline color="primary"/>
-                </IconButton>
-              ) : (
-                <Button color="primary" onClick={addOrResetHandler(false)}>
-                  {Dictionary.defValue(DictionaryService.keys.reset)}
-                </Button>
-              )
-            }
+            {isAddDidNotDoEventButton ? (
+              <IconButton onClick={addOrResetHandler(false)}>
+                <AddCircleOutline color="primary" />
+              </IconButton>
+            ) : (
+              <Button color="primary" onClick={addOrResetHandler(false)}>
+                {Dictionary.defValue(DictionaryService.keys.reset)}
+              </Button>
+            )}
           </Grid>
         </Grid>
-        <BehaviorEventComponent didEvents={false}/>
+        <BehaviorEventComponent didEvents={false} />
       </div>
     </div>
   );

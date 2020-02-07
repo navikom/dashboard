@@ -4,7 +4,7 @@ import {BaseEmoji} from "emoji-mart";
 import {IPopper} from "interfaces/IPopper";
 
 export class EmojiPopperStore implements IPopper {
- @observable open: boolean = false;
+ @observable open = false;
  @observable anchorEl?: HTMLButtonElement;
  @observable onChoose?: (value: React.ChangeEvent<HTMLInputElement> | string) => void;
 

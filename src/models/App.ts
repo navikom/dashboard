@@ -17,7 +17,6 @@ import { AppDataStore } from "models/App/AppDataStore";
 import { Roles } from "models/Role/RolesStore";
 import { Events } from "models/Event/EventsStore";
 import { Regions } from "models/Region/RegionsStore";
-import { SegmentRegionViewStore } from "views/Segments/store/SegmentRegionViewStore";
 import CampaignViewStore from "views/Campaigns/store/CampaignViewStore";
 
 export class AppStore implements IFlow {

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { ReactNode, useState } from "react";
 import {observer} from "mobx-react-lite";
 
 // @material-ui/icons
@@ -99,7 +99,14 @@ function ContentTabs(props: {store: IContentStep}) {
  )
 }
 
-function LaunchCard({...props}) {
+type LaunchCardType = {
+  header: string;
+  onClick(): void;
+  body?: ReactNode;
+  data?: string[][][];
+}
+
+function LaunchCard(props: LaunchCardType) {
  const cardClasses = cardStyles();
  return (
    <GridContainer>
@@ -120,7 +127,7 @@ function LaunchCard({...props}) {
         props.body !== undefined ? props.body : (
           <GridContainer spacing={5}>
            {
-            props.data.map((data: string[][], index: number) => (
+             props.data && props.data.map((data: string[][], index: number) => (
               <GridContainer key={index} item xs={12} spacing={3}>
                <FormRow data={data} />
               </GridContainer>

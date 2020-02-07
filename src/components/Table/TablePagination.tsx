@@ -10,30 +10,38 @@ import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
 const useStyles = makeStyles({
   tableWrapper: {
     maxHeight: window.innerHeight - 100,
-    overflow: 'auto',
-  },
+    overflow: "auto"
+  }
 });
 
-const CustomTablePagination = ({...props}) => {
+function CustomTablePagination({ ...props }) {
   const classes = useStyles();
   return (
     <div className={classes.tableWrapper}>
-      <Table stickyHeader aria-label="sticky table" {...props.tableProps} onRowClick={props.onRowClick}/>
-      {
-        props.paginationProps.count > 5 && <TablePagination
-          labelRowsPerPage={`${Dictionary.defValue(DictionaryService.keys.rowsPerPage, DictionaryService.keys.rows)}:`}
+      <Table
+        stickyHeader
+        aria-label="sticky table"
+        {...props.tableProps}
+        onRowClick={props.onRowClick}
+      />
+      {props.paginationProps.count > 5 && (
+        <TablePagination
+          labelRowsPerPage={`${Dictionary.defValue(
+            DictionaryService.keys.rowsPerPage,
+            DictionaryService.keys.rows
+          )}:`}
           component="div"
           backIconButtonProps={{
-            'aria-label': 'previous page',
+            "aria-label": "previous page"
           }}
           nextIconButtonProps={{
-            'aria-label': 'next page',
+            "aria-label": "next page"
           }}
           {...props.paginationProps}
         />
-      }
+      )}
     </div>
   );
-};
+}
 
 export default CustomTablePagination;

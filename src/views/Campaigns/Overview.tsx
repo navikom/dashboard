@@ -1,5 +1,14 @@
 import React from "react";
-import { Accessibility, AccessTime, Check, DateRange, Face, HowToReg, InfoOutlined, People } from "@material-ui/icons";
+import {
+  Accessibility,
+  AccessTime,
+  Check,
+  DateRange,
+  Face,
+  HowToReg,
+  InfoOutlined,
+  People
+} from "@material-ui/icons";
 import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
 import { CustomChartLine } from "components/Charts/CustomChartLine";
 import GridContainer from "components/Grid/GridContainer";
@@ -14,7 +23,7 @@ import CardFooter from "components/Card/CardFooter";
 import CardBody from "components/Card/CardBody";
 const useStyles = makeStyles(() => style);
 
-export default () => {
+function Overview() {
   const classes = useStyles();
   return (
     <div>
@@ -23,18 +32,17 @@ export default () => {
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-                <People/>
+                <People />
               </CardIcon>
-              <p
-                className={classes.cardCategory}>{Dictionary.defValue(DictionaryService.keys.users)}<InfoOutlined/>
+              <p className={classes.cardCategory}>
+                {Dictionary.defValue(DictionaryService.keys.users)}
+                <InfoOutlined />
               </p>
-              <h3 className={classes.cardTitle}>
-                2000
-              </h3>
+              <h3 className={classes.cardTitle}>2000</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <Face/>
+                <Face />
                 {Dictionary.defValue(DictionaryService.keys.totalPeople)}
               </div>
             </CardFooter>
@@ -44,16 +52,17 @@ export default () => {
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
-                <HowToReg/>
+                <HowToReg />
               </CardIcon>
-              <p
-                className={classes.cardCategory}>{Dictionary.defValue(DictionaryService.keys.knownUsers)}<InfoOutlined/>
+              <p className={classes.cardCategory}>
+                {Dictionary.defValue(DictionaryService.keys.knownUsers)}
+                <InfoOutlined />
               </p>
               <h3 className={classes.cardTitle}>900</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <Check/>
+                <Check />
                 40%
               </div>
             </CardFooter>
@@ -63,16 +72,17 @@ export default () => {
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
-                <Accessibility/>
+                <Accessibility />
               </CardIcon>
-              <p
-                className={classes.cardCategory}>{Dictionary.defValue(DictionaryService.keys.monthlyActiveUsers)}<InfoOutlined/>
+              <p className={classes.cardCategory}>
+                {Dictionary.defValue(DictionaryService.keys.monthlyActiveUsers)}
+                <InfoOutlined />
               </p>
               <h3 className={classes.cardTitle}>1200</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <DateRange/>
+                <DateRange />
                 Last 1 Month
               </div>
             </CardFooter>
@@ -83,22 +93,22 @@ export default () => {
         <GridItem xs={12} sm={12} md={12}>
           <Card chart>
             <CardHeader>
-              <CustomChartLine/>
+              <CustomChartLine />
             </CardHeader>
             <CardBody>
               <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-              <p className={classes.cardCategory}>
-                Last Campaign Performance
-              </p>
+              <p className={classes.cardCategory}>Last Campaign Performance</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime/> campaign sent 2 days ago
+                <AccessTime /> campaign sent 2 days ago
               </div>
             </CardFooter>
           </Card>
         </GridItem>
       </GridContainer>
     </div>
-  )
+  );
 }
+
+export default Overview;

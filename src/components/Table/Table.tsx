@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Table from "@material-ui/core/Table";
@@ -7,7 +6,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-import TablePagination from "@material-ui/core/TablePagination";
 // core components
 import tableStyle from "assets/jss/material-dashboard-react/components/tableStyle.jsx";
 import { createStyles, Theme } from "@material-ui/core";
@@ -16,29 +14,35 @@ const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
     head: {
       backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+      color: theme.palette.common.white
     },
     body: {
-      fontSize: 14,
-    },
-  }),
+      fontSize: 14
+    }
+  })
 )(TableCell);
 
 const StyledTableRow = withStyles((theme: Theme) =>
   createStyles({
     root: {
       "&:nth-of-type(odd)": {
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.default
       },
       "&:hover": {
         cursor: "pointer"
       }
-    },
-  }),
+    }
+  })
 )(TableRow);
 
 function CustomTable({ ...props }) {
-  const { classes, tableHead, tableData, tableHeaderColor, onRowClick = () => {} } = props;
+  const {
+    classes,
+    tableHead,
+    tableData,
+    tableHeaderColor,
+    onRowClick = () => {}
+  } = props;
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
@@ -61,11 +65,17 @@ function CustomTable({ ...props }) {
         <TableBody>
           {(tableData || []).map((prop: string[], key: number) => {
             return (
-              <StyledTableRow hover onClick={() => onRowClick(prop, key)} key={key}>
+              <StyledTableRow
+                hover
+                onClick={() => onRowClick(prop, key)}
+                key={key}
+              >
                 {prop.map((prop: any[] | string, key: number) => {
                   return (
                     <StyledTableCell className={classes.tableCell} key={key}>
-                      {Array.isArray(prop) ? React.createElement(prop[0], prop[1], prop[2]) : prop}
+                      {Array.isArray(prop)
+                        ? React.createElement(prop[0], prop[1], prop[2])
+                        : prop}
                     </StyledTableCell>
                   );
                 })}

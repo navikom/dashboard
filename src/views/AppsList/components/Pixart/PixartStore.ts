@@ -18,11 +18,11 @@ type PixartPicturesType = {
 class PixartStore implements IPixart {
   @observable categories: ICategory[] = [];
   @observable pictures: IPagination<IPicture> & PixartPicturesType = new PixartPicturesStore();
-  @observable pictureDropZoneOpen: boolean = false;
+  @observable pictureDropZoneOpen = false;
 
   mainAppStore!: IAppDataLocal;
 
-  @action setDropZoneOpen(value: boolean = true) {
+  @action setDropZoneOpen(value = true) {
     this.pictureDropZoneOpen = value;
   }
 

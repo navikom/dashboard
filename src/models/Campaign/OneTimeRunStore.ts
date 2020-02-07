@@ -10,10 +10,10 @@ import {ONE_TIME_RUN_TYPE} from "models/Constants";
 export class OneTimeRunStore implements IOneTimeRun {
  type: RunType = ONE_TIME_RUN_TYPE;
 
- @observable appTimezone: boolean = true;
+ @observable appTimezone = true;
  @observable later?: Date;
- @observable now: boolean = true;
- @observable userTimezone: boolean = false;
+ @observable now = true;
+ @observable userTimezone = false;
 
  @action update(model: IOneTimeRun) {
   Object.assign(this, model);

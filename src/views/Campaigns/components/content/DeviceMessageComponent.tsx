@@ -12,7 +12,7 @@ type MessageComponentType = {
  error: boolean;
  onInput(e: React.ChangeEvent<HTMLInputElement> | string): void;
  onEmojiClick(e: React.MouseEvent<HTMLButtonElement> | HTMLButtonElement): void;
- onVariableClick(e: React.MouseEvent<HTMLButtonElement> | HTMLButtonElement): void
+ onVariableClick(e: React.MouseEvent<HTMLButtonElement> | HTMLButtonElement): void;
  setCursorIndex(index: number): void;
  onClear(): void;
 }

@@ -5,32 +5,38 @@ import classNames from "classnames";
 import { createStyles, makeStyles, Theme, withStyles } from "@material-ui/core";
 import InputBase from "@material-ui/core/InputBase";
 
-import { dangerColor, primaryColor, whiteColor } from "assets/jss/material-dashboard-react";
+import {
+  dangerColor,
+  primaryColor,
+  whiteColor
+} from "assets/jss/material-dashboard-react";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    position: "relative"
-  },
-  label: {
-    top: theme.typography.pxToRem(-10),
-    left: theme.typography.pxToRem(10),
-    position: "absolute",
-    backgroundColor: whiteColor,
-    paddingLeft: theme.typography.pxToRem(3),
-    paddingRight: theme.typography.pxToRem(3),
-    borderRadius: theme.typography.pxToRem(10)
-  },
-  labelError: {
-    color: dangerColor[0]
-  },
-  inputSuccess: {
-    border: "1px solid #ced4da"
-  },
-  inputError: {
-    border: "1px solid " + dangerColor[0]
-  }
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      position: "relative"
+    },
+    label: {
+      top: theme.typography.pxToRem(-10),
+      left: theme.typography.pxToRem(10),
+      position: "absolute",
+      backgroundColor: whiteColor,
+      paddingLeft: theme.typography.pxToRem(3),
+      paddingRight: theme.typography.pxToRem(3),
+      borderRadius: theme.typography.pxToRem(10)
+    },
+    labelError: {
+      color: dangerColor[0]
+    },
+    inputSuccess: {
+      border: "1px solid #ced4da"
+    },
+    inputError: {
+      border: "1px solid " + dangerColor[0]
+    }
+  })
+);
 
 const Input = ({ ...props }) => {
   const classes = useStyles();
@@ -46,17 +52,17 @@ const Input = ({ ...props }) => {
 
   return (
     <div className={classes.root}>
-      <InputBase {...props} classes={{ input: underline }} endAdornment={null}/>
-      {
-        props.label && (
-          <label className={labelStyle}>{props.label}</label>
-        )
-      }
-      {
-        props.error && <FormHelperText className={classes.labelError}>
+      <InputBase
+        {...props}
+        classes={{ input: underline }}
+        endAdornment={null}
+      />
+      {props.label && <label className={labelStyle}>{props.label}</label>}
+      {props.error && (
+        <FormHelperText className={classes.labelError}>
           {props.endAdornment}
         </FormHelperText>
-      }
+      )}
     </div>
   );
 };
@@ -79,14 +85,14 @@ export const ThemedInput = withStyles((theme: Theme) =>
       fontFamily: [
         "-apple-system",
         "BlinkMacSystemFont",
-        "\"Segoe UI\"",
+        '"Segoe UI"',
         "Roboto",
-        "\"Helvetica Neue\"",
+        '"Helvetica Neue"',
         "Arial",
         "sans-serif",
-        "\"Apple Color Emoji\"",
-        "\"Segoe UI Emoji\"",
-        "\"Segoe UI Symbol\""
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"'
       ].join(","),
       "&:focus": {
         borderRadius: 4,
@@ -97,7 +103,5 @@ export const ThemedInput = withStyles((theme: Theme) =>
     }
   })
 );
-
-
 
 export default ThemedInput(Input);

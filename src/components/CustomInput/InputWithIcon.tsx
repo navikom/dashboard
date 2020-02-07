@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 // @material-ui/core
 import {createStyles, IconButton, InputAdornment, makeStyles, OutlinedInput, Theme} from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
 import Popper from "@material-ui/core/Popper";
 
 // @material-ui/icons
@@ -61,7 +60,7 @@ const InputWithIcon = ({...props}) => {
  const extraClasses = extraStyles();
  const adornmentEl = React.useRef<HTMLDivElement>(null);
  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
- const [adornments, setAdornments] = React.useState<{component: ReactNode, onClick: () => void}[]>([]);
+ const [adornments, setAdornments] = React.useState<{component: ReactNode; onClick: () => void}[]>([]);
  const [adornmentWidth, setAdornmentWidth] = React.useState(0);
  const {
   startAdornment,
@@ -80,7 +79,7 @@ const InputWithIcon = ({...props}) => {
   setAdornmentWidth(adornmentEl.current!.offsetWidth);
  }, []);
 
- const handlePopperOpen = (list: {component: ReactNode, onClick: () => void}[]) => (event: React.MouseEvent<HTMLElement>) => {
+ const handlePopperOpen = (list: {component: ReactNode; onClick: () => void}[]) => (event: React.MouseEvent<HTMLElement>) => {
   setAdornments(list);
   setAnchorEl(event.currentTarget === anchorEl ? null : event.currentTarget);
  };

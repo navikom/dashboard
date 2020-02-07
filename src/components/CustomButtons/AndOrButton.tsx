@@ -6,12 +6,10 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
-
 import { whiteColor } from "assets/jss/material-dashboard-react";
 
 // services
 import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
-
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,15 +17,15 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
       position: "relative",
       height: theme.typography.pxToRem(20),
-      marginBottom: theme.typography.pxToRem(10),
+      marginBottom: theme.typography.pxToRem(10)
     },
     opacity1: {
-      opacity: .7,
-      borderBottom: "1px dashed rgba(0,0,0,.15)",
+      opacity: 0.7,
+      borderBottom: "1px dashed rgba(0,0,0,.15)"
     },
     opacity2: {
-      opacity: .8,
-      borderBottom: "1px solid rgba(0,0,0,.15)",
+      opacity: 0.8,
+      borderBottom: "1px solid rgba(0,0,0,.15)"
     },
     buttons: {
       position: "absolute",
@@ -45,12 +43,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type ColorType = "inherit" | "primary" | "secondary" | "default";
 
-export default (props: {isAnd?: boolean, onClick: () => void, opacity2?: boolean, color?: ColorType}) => {
+export default (props: {
+  isAnd?: boolean;
+  onClick: () => void;
+  opacity2?: boolean;
+  color?: ColorType;
+}) => {
   const classes = useStyles();
   const wrapper = classNames({
     [classes.dividerWrapper]: true,
     [classes.opacity1]: true,
-    [classes.opacity2]: props.opacity2,
+    [classes.opacity2]: props.opacity2
   });
 
   const color = props.color || "primary";
@@ -58,22 +61,28 @@ export default (props: {isAnd?: boolean, onClick: () => void, opacity2?: boolean
 
   return (
     <div className={wrapper}>
-      <ButtonGroup size="small" aria-label="small outlined button group" className={classes.buttons}>
+      <ButtonGroup
+        size="small"
+        aria-label="small outlined button group"
+        className={classes.buttons}
+      >
         <Button
           onClick={props.onClick}
           className={classes.button}
           variant={isAnd ? "contained" : "outlined"}
-          color={isAnd ? color : "default"}>
+          color={isAnd ? color : "default"}
+        >
           {Dictionary.defValue(DictionaryService.keys.and)}
         </Button>
         <Button
           onClick={props.onClick}
           className={classes.button}
           variant={!isAnd ? "contained" : "outlined"}
-          color={!isAnd ? color : "default"}>
+          color={!isAnd ? color : "default"}
+        >
           {Dictionary.defValue(DictionaryService.keys.or)}
         </Button>
       </ButtonGroup>
     </div>
-  )
-}
+  );
+};

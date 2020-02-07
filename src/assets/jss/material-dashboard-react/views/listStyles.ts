@@ -5,16 +5,17 @@ export default makeStyles((theme: Theme) =>
   createStyles({
     root: {
       alignItems: "center",
-      textAlign: "center",
+      textAlign: "center"
     },
     button: {
       color: whiteColor,
-      opacity: .7,
+      opacity: 0.7,
       "&:hover": {
-        opacity: .9
+        opacity: 0.9
       }
     },
     buttonAdd: {
       marginTop: theme.typography.pxToRem(20)
     }
-  }));
+  })
+);

@@ -32,19 +32,25 @@ import Button from "components/CustomButtons/Button.tsx";
 import useStyles from "assets/jss/material-dashboard-react/components/headerLinksStyle";
 import useDropdownStyles from "assets/jss/material-dashboard-react/dropdownStyle";
 
-
-export default observer((props: RouteComponentProps) => {
+function AdminNavbarLinks(props: RouteComponentProps) {
   const classes = useStyles();
   const dropdownClasses = useDropdownStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [personAnchorEl, setPersonAnchorEl] = useState<null | HTMLElement>(null);
+  const [personAnchorEl, setPersonAnchorEl] = useState<null | HTMLElement>(
+    null
+  );
 
-  const handleClose = (cb: (el: (EventTarget & HTMLElement) | null) => void) => () => cb(null);
+  const handleClose = (
+    cb: (el: (EventTarget & HTMLElement) | null) => void
+  ) => () => cb(null);
   const logout = () => {
     Auth.logout();
   };
 
-  const handleClick = (cb: (el: (EventTarget & HTMLElement) | null) => void, anchor: null | HTMLElement) => (e: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (
+    cb: (el: (EventTarget & HTMLElement) | null) => void,
+    anchor: null | HTMLElement
+  ) => (e: React.MouseEvent<HTMLElement>) => {
     cb(anchor ? null : e.currentTarget);
   };
 
@@ -70,14 +76,11 @@ export default observer((props: RouteComponentProps) => {
           }}
         />
         <Button color="white" aria-label="edit" justIcon round>
-          <Search/>
+          <Search />
         </Button>
       </div>
-      <IconButton
-        className={iconButtonStyle}
-        aria-label="Dashboard"
-      >
-        <Dashboard/>
+      <IconButton className={iconButtonStyle} aria-label="Dashboard">
+        <Dashboard />
         <Hidden mdUp implementation="css">
           <p className={classes.linkText}>Dashboard</p>
         </Hidden>
@@ -88,11 +91,10 @@ export default observer((props: RouteComponentProps) => {
           onClick={handleClick(setAnchorEl, anchorEl)}
         >
           <Badge badgeContent={5} color="primary">
-            <Notifications/>
+            <Notifications />
           </Badge>
           <Hidden mdUp implementation="css">
-            <p onClick={() => {
-            }} className={classes.linkText}>
+            <p onClick={() => {}} className={classes.linkText}>
               Notification
             </p>
           </Hidden>
@@ -135,7 +137,7 @@ export default observer((props: RouteComponentProps) => {
                       onClick={handleClose(setAnchorEl)}
                       className={dropdownClasses.dropdownItem}
                     >
-                      You're now friend with Andrew
+                      You&apos;re now friend with Andrew
                     </MenuItem>
                     <MenuItem
                       onClick={handleClose(setAnchorEl)}
@@ -162,7 +164,7 @@ export default observer((props: RouteComponentProps) => {
           onClick={handleClick(setPersonAnchorEl, personAnchorEl)}
           aria-label="Person"
         >
-          <Person/>
+          <Person />
           <Hidden mdUp implementation="css">
             <p className={classes.linkText}>Profile</p>
           </Hidden>
@@ -210,4 +212,6 @@ export default observer((props: RouteComponentProps) => {
       </div>
     </div>
   );
-});
+}
+
+export default observer(AdminNavbarLinks);

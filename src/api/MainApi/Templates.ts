@@ -8,8 +8,11 @@ export class Templates {
   }
 
   async fetch(body: any = {}) {
-
-    const response = await fetch(this.url, { method: "post", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
+    const response = await fetch(this.url, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
 
     try {
       return await response.text();

@@ -4,9 +4,6 @@ import { ExpressionValueType, ValueType } from "types/expressions";
 import { ISegmentDevice } from "interfaces/ISegmentDevice";
 import { IStringFilter } from "interfaces/IFilters";
 
-type ModelType = typeof AbstractDeviceStore;
-type ModelCtor<M extends AbstractDeviceStore = AbstractDeviceStore> = (new () => M) & ModelType & IStringFilter;
-
 export abstract class AbstractDeviceStore extends AbstractViewStore implements ISegmentDevice {
   static propertiesMap: Map<string, Map<string, ExpressionValueType | undefined> | undefined>;
   model: ModelCtor;
@@ -76,3 +73,6 @@ export abstract class AbstractDeviceStore extends AbstractViewStore implements I
     this.list.replace([]);
   }
 }
+
+type ModelType = typeof AbstractDeviceStore;
+type ModelCtor<M extends AbstractDeviceStore = AbstractDeviceStore> = (new () => M) & ModelType & IStringFilter;

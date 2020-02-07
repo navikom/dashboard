@@ -12,10 +12,10 @@ import {PeriodAmount, TimePeriods} from "models/Constants";
 export class TriggerRunViewStore implements ITriggerRunView {
   static timePeriods = TimePeriods;
   @observable model: ITriggerRun = new TriggerRunStore();
-  @observable timeAmount: number = 1;
+  @observable timeAmount = 1;
   @observable timePeriod: string = TimePeriods[1];
-  @observable now: boolean = true;
-  @observable never: boolean = true;
+  @observable now = true;
+  @observable never = true;
 
   @computed static get systemEventsList() {
     return Events.systemEventsList || [];

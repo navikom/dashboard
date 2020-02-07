@@ -13,7 +13,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import { primaryColor } from "assets/jss/material-dashboard-react";
 
-const Input = ({ ...props }) => {
+function Input({ ...props }) {
   const [value, setValue] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -45,7 +45,7 @@ const Input = ({ ...props }) => {
       fullWidth
     />
   );
-};
+}
 
 const AutocompleteInput = withStyles({
   root: {
@@ -55,18 +55,17 @@ const AutocompleteInput = withStyles({
         padding: "10px 26px 10px 12px"
       },
       "&:hover fieldset": {
-        borderColor: primaryColor[0],
+        borderColor: primaryColor[0]
       },
       "&.Mui-focused fieldset": {
         borderWidth: "2px",
-        borderColor: primaryColor[0],
+        borderColor: primaryColor[0]
       }
     }
   }
 })(Input);
 
-const CustomAutocomplete = ({ ...props }) => {
-
+function CustomAutocomplete({ ...props }) {
   return (
     <div className={props.classes.root}>
       <Autocomplete
@@ -78,6 +77,7 @@ const CustomAutocomplete = ({ ...props }) => {
         renderTags={(value: (string | number)[], getTagProps) =>
           value.map((option: string | number, index: number) => (
             <Chip
+              key={index}
               label={option}
               clickable
               size="small"
@@ -92,19 +92,26 @@ const CustomAutocomplete = ({ ...props }) => {
         open={false}
         popupIcon={null}
         renderInput={(params: any) => (
-          <AutocompleteInput {...params} placeholder="values" onChange={props.onChange} values={props.values}/>
+          <AutocompleteInput
+            {...params}
+            placeholder="values"
+            onChange={props.onChange}
+            values={props.values}
+          />
         )}
       />
-      {
-        props.values.length > 0 && (
-          <IconButton size="small" className={props.classes.closeIcon} onClick={() => props.onChange([])}>
-            <Close/>
-          </IconButton>
-        )
-      }
+      {props.values.length > 0 && (
+        <IconButton
+          size="small"
+          className={props.classes.closeIcon}
+          onClick={() => props.onChange([])}
+        >
+          <Close />
+        </IconButton>
+      )}
     </div>
   );
-};
+}
 
 export default withStyles({
   root: {
@@ -115,6 +122,6 @@ export default withStyles({
     right: 5,
     top: "50%",
     transform: "translate(0,-50%)",
-    opacity: .6
+    opacity: 0.6
   }
 })(CustomAutocomplete);

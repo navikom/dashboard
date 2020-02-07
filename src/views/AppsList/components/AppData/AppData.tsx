@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { sortable } from "react-sortable";
 import { DropzoneDialog } from "material-ui-dropzone/dist";
@@ -58,13 +58,17 @@ const useCardStyles = makeStyles((theme: Theme) => createStyles({
   }
 }));
 
-const Item = ({ ...props }) => {
+type ItemProps = {
+  children: ReactNode;
+}
+
+function Item(props: ItemProps) {
   return (
     <Grid item {...props} xs={12} sm={6} md={4}>
       {props.children}
     </Grid>
   );
-};
+}
 
 const SortableItem = sortable(Item);
 
@@ -90,21 +94,21 @@ const ImageItem = observer((props: ImageItemType) => {
       />
       <CardActions className={classes.actions}>
         <Fab color="primary" aria-label="add" className={classes.button} onClick={props.onDeleteItem}>
-          <Delete/>
+          <Delete />
         </Fab>
       </CardActions>
     </Card>
   </SortableItem>;
 });
 
-const AppData = observer((props) => {
+function AppData() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState<PopperPlacementType>();
 
   const classes = useStyles();
   const centerNote = classNames(classes.note, classes.center);
-  let deepLink: string = "HERE IS A DEEP LINK";
+  const deepLink = "HERE IS A DEEP LINK";
 
   const handlePopperClick = (newPlacement: PopperPlacementType) => (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -214,11 +218,11 @@ const AppData = observer((props) => {
           onClick={() => AppDataStore.setOpen(true)}
           variant="contained"
           color="primary"
-          startIcon={<WallpaperOutlined/>}
+          startIcon={<WallpaperOutlined />}
         >{Dictionary.defValue(DictionaryService.keys.upload)}</Button>
       </Grid>
       <Grid item xs={12}>
-        <Divider variant="middle" className={classes.divider}/>
+        <Divider variant="middle" className={classes.divider} />
       </Grid>
       <Grid container item sm={12} xs={12} justify="center">
         <ProgressButton
@@ -228,7 +232,7 @@ const AppData = observer((props) => {
           loading={AppDataStore.fetching}
           color="primary"
           text={Dictionary.defValue(DictionaryService.keys.save)}
-          startIcon={<CloudUploadIcon/>}
+          startIcon={<CloudUploadIcon />}
         />
       </Grid>
 
@@ -244,6 +248,6 @@ const AppData = observer((props) => {
 
     </Grid>
   );
-});
+}
 
-export default AppData;
+export default observer(AppData);

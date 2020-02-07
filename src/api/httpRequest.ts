@@ -2,7 +2,7 @@ import { Headers, Body } from "interfaces/Request";
 import { ErrorHandler } from "utils/ErrorHandler";
 
 export async function request(method: string, url: string, allHeaders: Headers = {}, body?: Body, excludeHeaders?: string[], debug = true) {
-  let headers = Object.assign({
+  const headers = Object.assign({
     "Accept": "application/json",
     "Content-Type": "application/json"
   }, allHeaders);

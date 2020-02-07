@@ -1,4 +1,3 @@
-import {ObjectStore} from "models/ObjectStore";
+import { ObjectStore } from "models/ObjectStore";
 
-export class UserAttributeObjectStore extends ObjectStore {
-}
+export class UserAttributeObjectStore extends ObjectStore {}

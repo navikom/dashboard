@@ -19,7 +19,7 @@ class Beefree implements IBeefree {
 }
 
 class SettingsStore implements ISettings {
- @observable loaded: boolean = false;
+ @observable loaded = false;
  @observable cloudinaryPath?: string;
  @observable cloudinaryFolder?: string;
  @observable beefree?: IBeefree;

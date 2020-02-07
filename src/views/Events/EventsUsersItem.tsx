@@ -25,6 +25,9 @@ import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
 import { App } from "models/App";
 import { Users } from "models/User/UsersStore";
 
+// assets
+import style from "assets/jss/material-dashboard-react/views/dashboardStyle";
+
 // core components
 const CustomTabs = lazy(() => import("components/CustomTabs/CustomTabs"));
 const GridContainer = lazy(() => import("components/Grid/GridContainer"));
@@ -33,8 +36,6 @@ const UserInfoTab = lazy(() => import("views/Events/components/UserInfoTab"));
 const UserDevicesTab = lazy(() => import("views/Events/components/UserDevicesTab"));
 const UserEventsTab = lazy(() => import("views/Events/components/UserEventsTab"));
 const UserAppsTab = lazy(() => import("views/Events/components/UserAppsTab"));
-
-import style from "assets/jss/material-dashboard-react/views/dashboardStyle";
 
 interface MatchInfo {
   userId: string;
@@ -46,6 +47,7 @@ interface UsersItemProps extends RouteComponentProps<MatchInfo>, WithStyles<type
 const EventsUsersItem = (props: UsersItemProps) => {
   const userId = Number(props.match.params.userId);
   const [user, setUser] = useState({ userId } as IUser);
+
   let fullDataDispose: IReactionDisposer;
   const dispose = useDisposable(() =>
     when(() => App.sessionIsReady, () => {

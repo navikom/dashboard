@@ -5,8 +5,13 @@ import { Settings } from "models/Settings";
 export class ImageStore implements IImage {
   imageId: number;
 
-  path(width: number = 300): string {
-    return computed(() => `${Settings.cloudinaryPath}/image/upload/c_scale,h_${width}/${Settings.cloudinaryFolder}/${this.imageId}`).get();
+  path(width = 300): string {
+    return computed(
+      () =>
+        `${Settings.cloudinaryPath}/image/upload/c_scale,h_${width}/${
+          Settings.cloudinaryFolder
+        }/${this.imageId}`
+    ).get();
   }
 
   constructor(imageId: number) {

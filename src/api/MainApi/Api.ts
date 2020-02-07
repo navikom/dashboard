@@ -2,48 +2,6 @@ import { ApiBase } from "api/ApiBase";
 import { HttpBase } from "api/HttpBase";
 import { ILoginResult } from "interfaces/ILoginResult";
 
-export default class Api extends ApiBase {
-  constructor(session: number | null) {
-    super(session);
-  }
-
-  get user(): User {
-    return new User(this.session);
-  }
-
-  get event(): AEvent {
-    return new AEvent(this.session);
-  }
-
-  get app(): App {
-    return new App(this.session);
-  }
-
-  get setting(): Setting {
-    return new Setting(this.session);
-  }
-
-  get pixartPicture(): PixartPicture {
-    return new PixartPicture(this.session);
-  }
-
-  get role(): Roles {
-    return new Roles(this.session);
-  }
-
-  get segment(): Segments {
-    return new Segments(this.session);
-  }
-
-  get campaign(): Campaign {
-    return new Campaign(this.session);
-  }
-
-  get region(): Region {
-    return new Region(this.session);
-  }
-}
-
 class User extends HttpBase {
   constructor(session: number | null) {
     super("users", session);
@@ -79,17 +37,16 @@ class User extends HttpBase {
     const body = {
       grantType: "refresh"
     };
-    return this.fetchData("post", "login", body)
+    return this.fetchData("post", "login", body);
   }
 
   changePassword(password: string, newPassword: string) {
-    return this.fetchData("post", "change-password", {password, newPassword});
+    return this.fetchData("post", "change-password", { password, newPassword });
   }
 
   updateRole(userId: number, roleId: number) {
     return this.fetchData("post", `${userId}/update-role/${roleId}`);
   }
-
 }
 
 class AEvent extends HttpBase {
@@ -104,10 +61,13 @@ class App extends HttpBase {
   }
 
   update(appId: number, data: any) {
-    return this.fetchData("put", appId.toString(), data, undefined, ["Content-Type", "Accept"]);
+    return this.fetchData("put", appId.toString(), data, undefined, [
+      "Content-Type",
+      "Accept"
+    ]);
   }
 
-  sortImages(appId: number, data: {imageId: number, sort: number}[]) {
+  sortImages(appId: number, data: { imageId: number; sort: number }[]) {
     return this.fetchData("put", `${appId}/images/sort`, data);
   }
 
@@ -132,7 +92,10 @@ class PixartPicture extends HttpBase {
   }
 
   save(data: any) {
-    return this.fetchData("post", undefined, data, undefined, ["Content-Type", "Accept"]);
+    return this.fetchData("post", undefined, data, undefined, [
+      "Content-Type",
+      "Accept"
+    ]);
   }
 }
 
@@ -157,5 +120,44 @@ class Campaign extends HttpBase {
 class Region extends HttpBase {
   constructor(session: number | null) {
     super("regions", session);
+  }
+}
+
+export default class Api extends ApiBase {
+
+  get user(): User {
+    return new User(this.session);
+  }
+
+  get event(): AEvent {
+    return new AEvent(this.session);
+  }
+
+  get app(): App {
+    return new App(this.session);
+  }
+
+  get setting(): Setting {
+    return new Setting(this.session);
+  }
+
+  get pixartPicture(): PixartPicture {
+    return new PixartPicture(this.session);
+  }
+
+  get role(): Roles {
+    return new Roles(this.session);
+  }
+
+  get segment(): Segments {
+    return new Segments(this.session);
+  }
+
+  get campaign(): Campaign {
+    return new Campaign(this.session);
+  }
+
+  get region(): Region {
+    return new Region(this.session);
   }
 }

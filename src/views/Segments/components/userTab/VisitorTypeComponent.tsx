@@ -12,10 +12,10 @@ import SegmentViewStore from "views/Segments/store/SegmentViewStore";
 // core components
 import FiltarableComponent from "components/Filter/FiltarableComponent";
 
-type SecondSelectOptionsType = { value?: NumberTypes, options?: NumberTypes[], onChange?: (e: string) => void };
+type SecondSelectOptionsType = { value?: NumberTypes; options?: NumberTypes[]; onChange?: (e: string) => void };
 type ThirdSelectOptionsType = {
-  values?: number[], value?: number | boolean, min?: number, max?: number
-  onChange?: (e: string, key: "values" | "value" | "min" | "max") => void
+  values?: number[]; value?: number | boolean; min?: number; max?: number;
+  onChange?: (e: string, key: "values" | "value" | "min" | "max") => void;
 };
 
 export default observer(() => {

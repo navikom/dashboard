@@ -22,7 +22,7 @@ const title = {
   "&:hover,&:focus": {
     background: "transparent",
     color: whiteColor,
-    opacity: .7
+    opacity: 0.7
   }
 };
 
@@ -95,6 +95,7 @@ const headerStyle = makeStyles(() =>
       color: whiteColor,
       ...defaultBoxShadow
     }
-  }));
+  })
+);
 
 export default headerStyle;

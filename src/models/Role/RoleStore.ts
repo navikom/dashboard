@@ -1,4 +1,4 @@
-import { IRole, RoleType } from "interfaces/IRole";
+import { IRole } from "interfaces/IRole";
 import { action } from "mobx";
 
 export class RoleStore implements IRole {

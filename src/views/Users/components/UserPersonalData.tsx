@@ -2,43 +2,28 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import classNames from "classnames";
 import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  DatePicker
-} from "@material-ui/pickers";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 // @material-ui/core
 import Grid from "@material-ui/core/Grid";
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
-
-// interfaces
-import { IUser } from "interfaces/IUser";
+import Divider from "@material-ui/core/Divider";
 
 // services
 import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
 
-// models
-import { FEMALE, MALE } from "models/User/UserStore";
-
 // core components
 import { UserDetails } from "views/Users/components/UserDetailsStore";
 import CustomInput from "components/CustomInput/CustomInput";
+import Check from "components/Check/Check";
 
 import useStyles from "assets/jss/material-dashboard-react/components/inputFieldStyle";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import ProgressButton from "components/CustomButtons/ProgressButton";
-import Divider from "@material-ui/core/Divider";
-import Check from "components/Check/Check";
 
 const extraStyles = makeStyles((theme: Theme) =>
   createStyles({
     title: {
-      opacity: .5,
+      opacity: 0.5,
       marginTop: theme.typography.pxToRem(10)
     },
     label: {
@@ -47,18 +32,28 @@ const extraStyles = makeStyles((theme: Theme) =>
     radioGroup: {
       width: theme.typography.pxToRem(300)
     }
-  }));
+  })
+);
 
 export default observer(() => {
   const classes = useStyles();
   const extraClasses = extraStyles();
   const user = UserDetails.user;
-  const centerNote = classNames(classes.note, classes.center, extraClasses.label);
+  const centerNote = classNames(
+    classes.note,
+    classes.center,
+    extraClasses.label
+  );
 
   if (!user) return null;
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Typography variant="subtitle1" color="inherit" align="center" className={extraClasses.title}>
+      <Typography
+        variant="subtitle1"
+        color="inherit"
+        align="center"
+        className={extraClasses.title}
+      >
         {Dictionary.defValue(DictionaryService.keys.personalData)}
       </Typography>
       <Grid container item direction="row">
@@ -73,7 +68,8 @@ export default observer(() => {
             disabled: true,
             value: user.email || ""
           }}
-          labelText=""/>
+          labelText=""
+        />
       </Grid>
       <Grid container item direction="row">
         <Typography variant="subtitle2" className={centerNote}>
@@ -87,7 +83,8 @@ export default observer(() => {
             disabled: true,
             value: user.firstName || ""
           }}
-          labelText=""/>
+          labelText=""
+        />
       </Grid>
       <Grid container item direction="row">
         <Typography variant="subtitle2" className={centerNote}>
@@ -101,7 +98,8 @@ export default observer(() => {
             disabled: true,
             value: user.lastName || ""
           }}
-          labelText=""/>
+          labelText=""
+        />
       </Grid>
       <Grid container item direction="row">
         <Typography variant="subtitle2" className={centerNote}>
@@ -115,7 +113,8 @@ export default observer(() => {
             disabled: true,
             value: user.phone || ""
           }}
-          labelText=""/>
+          labelText=""
+        />
       </Grid>
       <Grid container item direction="row" className={classes.container}>
         <Typography variant="subtitle2" className={centerNote}>
@@ -129,7 +128,8 @@ export default observer(() => {
             disabled: true,
             value: user.birthday || ""
           }}
-          labelText=""/>
+          labelText=""
+        />
       </Grid>
       <Grid container item direction="row" className={classes.container}>
         <Typography variant="subtitle2" className={centerNote}>
@@ -143,10 +143,16 @@ export default observer(() => {
             disabled: true,
             value: user.gender || ""
           }}
-          labelText=""/>
+          labelText=""
+        />
       </Grid>
-      <Divider variant="middle"/>
-      <Typography variant="subtitle1" color="inherit" align="center" className={extraClasses.title}>
+      <Divider variant="middle" />
+      <Typography
+        variant="subtitle1"
+        color="inherit"
+        align="center"
+        className={extraClasses.title}
+      >
         {Dictionary.defValue(DictionaryService.keys.permissions)}
       </Typography>
       <Grid container item direction="row" className={classes.container}>

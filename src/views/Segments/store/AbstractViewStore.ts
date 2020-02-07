@@ -1,6 +1,5 @@
 import { action, observable } from "mobx";
 import { ExpressionValueType, ValueType } from "types/expressions";
-import { ISegmentViewForm } from "interfaces/ISegmentViewForm";
 import { ErrorHandler } from "utils/ErrorHandler";
 
 export abstract class AbstractViewStore {

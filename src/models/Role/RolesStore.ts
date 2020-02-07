@@ -33,11 +33,11 @@ const constraints = {
 
 class RolesStore extends Errors implements IRoles {
   @observable errors: {[k: string]: string} = {};
-  @observable name: string = "";
-  @observable rowName: string = "";
-  @observable fetched: boolean = false;
-  @observable fetching: boolean = false;
-  @observable currentRow: number = -1;
+  @observable name = "";
+  @observable rowName = "";
+  @observable fetched = false;
+  @observable fetching = false;
+  @observable currentRow = -1;
   readonly items: IObservableArray<IRole> = observable<IRole>([]);
 
   @computed get tableData() {
@@ -90,11 +90,11 @@ class RolesStore extends Errors implements IRoles {
     }
   }
 
-  @action setFetched(value: boolean = true) {
+  @action setFetched(value = true) {
     this.fetched = value;
   }
 
-  @action setFetching(value: boolean = true) {
+  @action setFetching(value = true) {
     this.fetching = value;
   }
 

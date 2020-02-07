@@ -4,10 +4,10 @@ import { createStyles } from "@material-ui/core";
 const customTabsStyle = createStyles({
   cardTitle: {
     float: "left",
-    lineHeight: "24px",
+    lineHeight: "24px"
   },
   cardTitlePadding: {
-    padding: "10px 10px 10px 0px",
+    padding: "10px 10px 10px 0px"
   },
   cardTitleRTL: {
     float: "right",

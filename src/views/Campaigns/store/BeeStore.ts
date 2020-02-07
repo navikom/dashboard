@@ -40,7 +40,7 @@ type BeeCallbacks = {
 export class BeeStore {
  @observable clientId?: string;
  @observable clientSecret?: string;
- @observable started: boolean = false;
+ @observable started = false;
  @observable attributesEvents = new AttributeEventPopperStore();
  editor = new Bee();
 

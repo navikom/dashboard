@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {observer} from "mobx-react-lite";
 
 // @material-ui/icons
@@ -9,7 +9,6 @@ import AddAlert from "@material-ui/icons/AddAlert";
 import {createStyles, makeStyles, Stepper, Theme} from "@material-ui/core";
 import Step from "@material-ui/core/Step";
 import StepButton from "@material-ui/core/StepButton";
-import StepLabel from "@material-ui/core/StepLabel";
 import StepContent from "@material-ui/core/StepContent";
 
 // core components

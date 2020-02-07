@@ -6,4 +6,6 @@ export interface IPicture extends WithPrimaryKey {
   createdAt: Date;
   categoryId: number;
   users: IUser;
+
+  path(width?: number): string;
 }

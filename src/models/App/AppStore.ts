@@ -14,7 +14,7 @@ export class AppStore implements IApp {
   @observable updatedAt?: Date;
   @observable images: IAppsImages[] = [];
 
-  pk: string = "appId";
+  pk = "appId";
 
   get plainData() {
     const data = [

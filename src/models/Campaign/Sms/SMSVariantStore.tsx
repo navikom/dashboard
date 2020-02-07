@@ -8,7 +8,7 @@ export class SMSVariantStore implements ISMSVariant {
  readonly channel: SmsType = SMS_CHANNEL;
  name!: string;
  provider!: string;
- @observable variantId: number = 0;
+ @observable variantId = 0;
  @observable data: ISMSMessage;
 
  constructor(data: ISMSMessage = new SMSMessageStore()) {

@@ -5,11 +5,10 @@ import { Errors } from "models/Errors";
 import { SegmentStore } from "models/Segment/SegmentStore";
 import { Segments } from "models/Segment/SegmentsStore";
 import {
-  ALL, CHANNEL_LIST,
-  ContainsExpressions,
+  CHANNEL_LIST,
   DateExpressions,
-  NumberExpressions, ReachabilityExpressions,
-  StringExpressions,
+  NumberExpressions,
+  ReachabilityExpressions,
   VisitorTypeList
 } from "models/Constants";
 
@@ -53,7 +52,7 @@ class SegmentViewStore extends Errors {
 
   @computed get lastSeenValues() {
     const userTab = this.segment!.userTab;
-    const values: { date?: Date, from?: Date, to?: Date } = {};
+    const values: { date?: Date; from?: Date; to?: Date } = {};
     if (!userTab || (userTab && !userTab.lastSeen)) {
       return values;
     }
@@ -131,7 +130,7 @@ class SegmentViewStore extends Errors {
   }
 
   @action clearReachability() {
-    this.segment!.userTab!.clearReachability();
+    this.segment && this.segment.userTab && this.segment.userTab.clearReachability();
   }
 
   @action saveSegment() {
@@ -139,7 +138,7 @@ class SegmentViewStore extends Errors {
   }
 
   @action clearAll() {
-    this.segment!.userTab!.clear();
+    this.segment && this.segment.userTab && this.segment.userTab.clear();
     SegmentRegionViewStore.clear();
     SegmentAttributeViewStore.clear();
     SegmentEventViewStore.clear();

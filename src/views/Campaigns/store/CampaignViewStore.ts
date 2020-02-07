@@ -13,9 +13,12 @@ import {ILaunchStep} from "interfaces/ILaunchStep";
 import {CampaignStore} from "models/Campaign/CampaignStore";
 import {Campaigns} from "models/Campaign/CampaignsStore";
 import {
- AUDIENCE_CAMPAIGN_STEP, CHANNEL_LIST,
+ AUDIENCE_CAMPAIGN_STEP,
+ CHANNEL_LIST,
  CONTENT_CAMPAIGN_STEP,
- CONVERSION_CAMPAIGN_STEP, EMAIL_CHANNEL, LAUNCH_CAMPAIGN_STEP, TEST_CAMPAIGN_STEP,
+ CONVERSION_CAMPAIGN_STEP,
+ LAUNCH_CAMPAIGN_STEP,
+ TEST_CAMPAIGN_STEP,
  WHEN_TO_SEND_CAMPAIGN_STEP
 } from "models/Constants";
 import {Errors} from "models/Errors";
@@ -34,7 +37,7 @@ import {LaunchStepStore} from "views/Campaigns/store/LaunchStepStore";
 
 class CampaignViewStore extends Errors {
  @observable campaign?: ICampaign;
- @observable activeStep: number = 0;
+ @observable activeStep = 0;
  @observable audienceStepStore?: IAudienceStep;
  @observable whenToRunStepStore?: IWhenToSendStep;
  @observable contentStepStore?: IContentStep;

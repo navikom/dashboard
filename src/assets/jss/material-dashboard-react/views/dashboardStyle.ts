@@ -47,7 +47,7 @@ const dashboardStyle = createStyles({
       width: "17px!important",
       height: "17px!important",
       position: "relative",
-      opacity: .5
+      opacity: 0.5
     }
   },
   cardCategoryWhite: {
@@ -75,7 +75,7 @@ const dashboardStyle = createStyles({
     marginBottom: "3px",
     textDecoration: "none"
   },
-  "small": {
+  small: {
     color: grayColor[1],
     fontWeight: 400,
     lineHeight: "1"

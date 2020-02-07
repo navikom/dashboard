@@ -45,7 +45,8 @@ const AppTable = observer((props: { handleClick(id: string): void }) => {
           Dictionary.defValue(DictionaryService.keys.id),
           Dictionary.defValue(DictionaryService.keys.title),
           Dictionary.defValue(DictionaryService.keys.createdAt),
-          Dictionary.defValue(DictionaryService.keys.description)],
+          Dictionary.defValue(DictionaryService.keys.description)
+        ],
         tableData: Apps.appTableData
       }}
       paginationProps={{
@@ -61,20 +62,19 @@ const AppTable = observer((props: { handleClick(id: string): void }) => {
   );
 });
 
-
-interface AppsProps extends RouteComponentProps {
-}
+type AppsProps = RouteComponentProps
 
 function AppList(props: AppsProps) {
   const classes = useStyles();
 
   const dispose = useDisposable(() =>
-    when(() => App.sessionIsReady, () => Apps.fetchItems()));
+    when(() => App.sessionIsReady, () => Apps.fetchItems())
+  );
 
   useEffect(() => {
     return () => {
       dispose();
-    }
+    };
   });
 
   return (
@@ -82,81 +82,93 @@ function AppList(props: AppsProps) {
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>{Dictionary.defValue(DictionaryService.keys.applicationsList)}</h4>
+            <h4 className={classes.cardTitleWhite}>
+              {Dictionary.defValue(DictionaryService.keys.applicationsList)}
+            </h4>
             <p className={classes.cardCategoryWhite}>
-              {Dictionary.defValue(DictionaryService.keys.availableApplications)}
+              {Dictionary.defValue(
+                DictionaryService.keys.availableApplications
+              )}
             </p>
           </CardHeader>
           <CardBody>
             <AppTable
-              handleClick={(appId: string) => props.history.push(`${APP_LIST_ROUTE}/${appId}/overview`)}
+              handleClick={(appId: string) =>
+                props.history.push(`${APP_LIST_ROUTE}/${appId}/overview`)
+              }
             />
           </CardBody>
           <CardFooter>
-            {
-              useObserver(() => {
-                return (
-                  <Grid container item direction="row" className={classes.center}>
-                    <Grid item lg={1} xs={3}>
-                      <Typography variant="subtitle2">
-                        {Dictionary.defValue(DictionaryService.keys.newApp)}:
-                      </Typography>
-                    </Grid>
-                    <Grid item lg={3} xs={3} className={classes.form}>
-                      <CustomInput
-                        formControlProps={{
-                          margin: "none"
-                        }}
-                        inputProps={{
-                          onChange: (e: React.ChangeEvent<HTMLInputElement>) => Apps.onInput({ title: e.target.value }),
-                          defaultValue: Apps.title
-                        }}
-                        labelText={Dictionary.defValue(DictionaryService.keys.title)}/>
-                    </Grid>
-                    <Grid item lg={1} xs={3}>
-                      <ProgressButton
-                        onClick={() => Apps.addApp()}
-                        disabled={Apps.isDisabled}
-                        variant="contained"
-                        loading={Apps.fetching}
-                        color="primary"
-                        text={Dictionary.defValue(DictionaryService.keys.add)}
-                        startIcon={<CloudUploadIcon/>}
-                      />
-                    </Grid>
+            {useObserver(() => {
+              return (
+                <Grid container item direction="row" className={classes.center}>
+                  <Grid item lg={1} xs={3}>
+                    <Typography variant="subtitle2">
+                      {Dictionary.defValue(DictionaryService.keys.newApp)}:
+                    </Typography>
                   </Grid>
-                );
-              })
-            }
+                  <Grid item lg={3} xs={3} className={classes.form}>
+                    <CustomInput
+                      formControlProps={{
+                        margin: "none"
+                      }}
+                      inputProps={{
+                        onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                          Apps.onInput({ title: e.target.value }),
+                        defaultValue: Apps.title
+                      }}
+                      labelText={Dictionary.defValue(
+                        DictionaryService.keys.title
+                      )}
+                    />
+                  </Grid>
+                  <Grid item lg={1} xs={3}>
+                    <ProgressButton
+                      onClick={() => Apps.addApp()}
+                      disabled={Apps.isDisabled}
+                      variant="contained"
+                      loading={Apps.fetching}
+                      color="primary"
+                      text={Dictionary.defValue(DictionaryService.keys.add)}
+                      startIcon={<CloudUploadIcon />}
+                    />
+                  </Grid>
+                </Grid>
+              );
+            })}
           </CardFooter>
         </Card>
       </GridItem>
-      {
-        useObserver(() => {
-          return (
-            <div>
-              <Snackbar
-                place="br"
-                color="info"
-                icon={AddAlert}
-                message={Dictionary.defValue(DictionaryService.keys.dataSavedSuccessfully, Apps.title)}
-                open={Apps.successRequest}
-                closeNotification={() => Apps.setSuccessRequest(false)}
-                close
-              />
-              <Snackbar
-                place="br"
-                color="danger"
-                icon={Clear}
-                message={Dictionary.defValue(DictionaryService.keys.dataSaveError, [Apps.title, Apps.error || ""])}
-                open={Apps.hasError}
-                closeNotification={() => Apps.setError(null)}
-                close
-              />
-            </div>
-          );
-        })
-      }
+      {useObserver(() => {
+        return (
+          <div>
+            <Snackbar
+              place="br"
+              color="info"
+              icon={AddAlert}
+              message={Dictionary.defValue(
+                DictionaryService.keys.dataSavedSuccessfully,
+                Apps.title
+              )}
+              open={Apps.successRequest}
+              closeNotification={() => Apps.setSuccessRequest(false)}
+              close
+            />
+            <Snackbar
+              place="br"
+              color="danger"
+              icon={Clear}
+              message={Dictionary.defValue(
+                DictionaryService.keys.dataSaveError,
+                [Apps.title, Apps.error || ""]
+              )}
+              open={Apps.hasError}
+              closeNotification={() => Apps.setError(null)}
+              close
+            />
+          </div>
+        );
+      })}
     </GridContainer>
   );
 }

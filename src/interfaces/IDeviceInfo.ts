@@ -6,8 +6,8 @@ export interface IDeviceInfoData {
   properties: IAndroidDevice | IIOSDevice;
 }
 export interface IDeviceInfo {
-  BROWSER: IDeviceInfoData,
-  OS: IDeviceInfoData,
+  BROWSER: IDeviceInfoData;
+  OS: IDeviceInfoData;
   headers: string;
-  params: {[key: string]: string};
+  params: { [key: string]: string };
 }

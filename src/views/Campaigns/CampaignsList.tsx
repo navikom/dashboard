@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { observer, useDisposable } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router";
 import { when } from "mobx";
@@ -14,6 +14,15 @@ import IconButton from "@material-ui/core/IconButton";
 import { Campaigns } from "models/Campaign/CampaignsStore";
 import { App } from "models/App";
 
+// services
+import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
+
+// assets
+import useStyles from "assets/jss/material-dashboard-react/views/cardStyle";
+import useListStyles from "assets/jss/material-dashboard-react/views/listStyles";
+
+import { lazy } from "utils";
+
 // core components
 const GridContainer = lazy(() => import("components/Grid/GridContainer"));
 const GridItem = lazy(() => import("components/Grid/GridItem"));
@@ -21,13 +30,6 @@ const CustomTabs = lazy(() => import("components/CustomTabs/CustomTabs"));
 const Overview = lazy(() => import("views/Campaigns/Overview"));
 const Table = lazy(() => import("components/Table/TablePagination"));
 const RegularButton = lazy(() => import("components/CustomButtons/Button"));
-
-// services
-import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
-
-import { lazy } from "utils";
-import useStyles from "assets/jss/material-dashboard-react/views/cardStyle";
-import useListStyles from "assets/jss/material-dashboard-react/views/listStyles";
 
 const Title = observer((props: {onClick: () => void}) => {
   const classes = useStyles();
@@ -85,7 +87,7 @@ const CampaignTable = observer((props: {onBtnClick: () => void}) => {
   }
 );
 
-export default (props: RouteComponentProps) => {
+function CampaignsList(props: RouteComponentProps) {
 
   Campaigns.bindCurrentStore(props.match.url);
   useDisposable(() =>
@@ -122,3 +124,5 @@ export default (props: RouteComponentProps) => {
     </GridContainer>
   );
 }
+
+export default CampaignsList;

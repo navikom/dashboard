@@ -43,7 +43,7 @@ interface IPropsArgument {
   addNewItem(): void;
   deleteItem(): void;
   item: ISegmentDevice;
-  device: "android" | "ios"
+  device: "android" | "ios";
 }
 
 const DeviceComponent = observer((props: IPropsArgument) => {

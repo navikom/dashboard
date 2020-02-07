@@ -1,7 +1,7 @@
-import {IObject} from "interfaces/IObject";
+import { IObject } from "interfaces/IObject";
 
 export interface IEventObject extends IObject {
- fetching: boolean;
- setFetching(value: boolean): void;
- fetchKeys(): void
+  fetching: boolean;
+  setFetching(value: boolean): void;
+  fetchKeys(): void;
 }

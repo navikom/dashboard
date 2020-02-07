@@ -14,7 +14,7 @@ export class AttributeEventPopperStore implements IAttributesEventsPopper {
  onChoose?: (value: React.ChangeEvent<HTMLInputElement> | string) => void;
 
  @observable variables: IObject = new ObjectStore(VARIABLES, UserOptions);
- @observable open: boolean = false;
+ @observable open = false;
  @observable anchorEl?: HTMLButtonElement;
 
 
@@ -38,7 +38,7 @@ export class AttributeEventPopperStore implements IAttributesEventsPopper {
  }
 
  @computed get variableMargeTags() {
-  const variables: {name: string, value: string}[] = [];
+  const variables: {name: string; value: string}[] = [];
   (function traverse(map: IObject, variableName: string | null, variable: string) {
    const keys: string[] = map.keys;
    keys.forEach((key: string) => {

@@ -31,36 +31,49 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const UserDevicesTab = ({ ...props }) => {
+function UserDevicesTab(props: {devices: IUsersDevices[]}) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      {
-        props.devices.length ?
-          props.devices.map((device: IUsersDevices, key: number) => (
-            <ExpansionPanel key={key}>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon/>}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Chip label={<Typography className={classes.heading}>Device {key + 1}</Typography>}/>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-                <Grid container>
-                  {
-                    device.plainData.map((data, key) => <ExpansionDataItems key={key} title={data[0]} data={data[1]}/>)
-                  }
-                </Grid>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          )) : <Typography variant="h5" gutterBottom>
-            {Dictionary.defValue(DictionaryService.keys.cannotDetectForThatUser, Dictionary.defValue(DictionaryService.keys.devices))}
-          </Typography>
-      }
-
+      {props.devices.length ? (
+        props.devices.map((device: IUsersDevices, key: number) => (
+          <ExpansionPanel key={key}>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Chip
+                label={
+                  <Typography className={classes.heading}>
+                    Device {key + 1}
+                  </Typography>
+                }
+              />
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Grid container>
+                {device.plainData.map((data, key) => (
+                  <ExpansionDataItems
+                    key={key}
+                    title={data[0]}
+                    data={data[1]}
+                  />
+                ))}
+              </Grid>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        ))
+      ) : (
+        <Typography variant="h5" gutterBottom>
+          {Dictionary.defValue(
+            DictionaryService.keys.cannotDetectForThatUser,
+            Dictionary.defValue(DictionaryService.keys.devices)
+          )}
+        </Typography>
+      )}
     </div>
   );
-};
+}
 
 export default UserDevicesTab;

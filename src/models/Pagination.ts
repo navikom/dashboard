@@ -4,27 +4,28 @@ import { api, Apis } from "api";
 import React from "react";
 import { WithPrimaryKey } from "interfaces/WithPrimaryKey";
 import { IPagination } from "interfaces/IPagination";
+import {ErrorHandler} from 'utils/ErrorHandler';
 
 type ApiMethodsInterface = "user" | "event" | "app" | "pixartPicture" | "segment" | "campaign" | "region";
 type RequestTypesInterface = "pagination";
 
 export abstract class Pagination<T extends WithPrimaryKey> extends Errors implements IPagination<T> {
-  started: boolean = false;
-  page: number = 0;
-  pageSize: number = 20;
+  started = false;
+  page = 0;
+  pageSize = 20;
   apiMethod: ApiMethodsInterface;
   requestMethod: RequestTypesInterface;
   additionalParams: any;
   pk: string;
 
-  @observable fetching: boolean = false;
-  @observable allFetched: boolean = false;
+  @observable fetching = false;
+  @observable allFetched = false;
   @observable items: T[];
-  @observable count: number = 0;
+  @observable count = 0;
 
   // table pagination
-  @observable viewRowsPerPage: number = 5;
-  @observable viewPage: number = 0;
+  @observable viewRowsPerPage = 5;
+  @observable viewPage = 0;
   rowsPerPageOptions: number[];
 
   @computed get isAllFetched(): boolean {
@@ -73,7 +74,7 @@ export abstract class Pagination<T extends WithPrimaryKey> extends Errors implem
     this.pageSize = size;
   }
 
-  @action setStarted(value: boolean = true) {
+  @action setStarted(value = true) {
     this.started = value;
   }
 
@@ -102,7 +103,7 @@ export abstract class Pagination<T extends WithPrimaryKey> extends Errors implem
   }
 
   @action push(data: any) {
-    throw "Redefine in children";
+    throw new ErrorHandler("Redefine in children");
   }
 
   @action
@@ -123,7 +124,7 @@ export abstract class Pagination<T extends WithPrimaryKey> extends Errors implem
 
   @action reachedBottom = async (top: number, height: number) => {
     if (this.fetching) return;
-    let paddingToBottom = 15;
+    const paddingToBottom = 15;
     if (top >= height - paddingToBottom) {
       this.tryGetNext();
     }
@@ -155,7 +156,7 @@ export abstract class Pagination<T extends WithPrimaryKey> extends Errors implem
   };
 
   @action
-  setFetching(value: boolean = true) {
+  setFetching(value = true) {
     this.fetching = value;
   }
 

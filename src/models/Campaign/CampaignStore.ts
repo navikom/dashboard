@@ -18,9 +18,9 @@ export class CampaignStore implements ICampaign {
 
   @observable conversion: IConversion | null = null;
   @observable excludeSegments?: ISegment[];
-  @observable frequencyCap: boolean = false;
+  @observable frequencyCap = false;
   @observable name?: string;
-  @observable onlyForSubscribed: boolean = false;
+  @observable onlyForSubscribed = false;
   @observable runType: IOneTimeRun | ITriggerRun | IRecurringRun = new OneTimeRunStore();
   @observable segments?: ISegment[];
   @observable targetAndroidApps?: string[];

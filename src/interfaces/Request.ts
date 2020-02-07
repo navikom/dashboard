@@ -1,7 +1,7 @@
 export interface Headers {
-  [key: string]: string
+  [key: string]: string;
 }
 
 export interface Body {
-  [key: string]: any
+  [key: string]: any;
 }

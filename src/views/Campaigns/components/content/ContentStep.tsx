@@ -49,10 +49,10 @@ const ChannelComponents = {
 };
 
 function ContentStep() {
- const store = CampaignViewStore.contentStepStore;
- if (!store) return null;
 
  const classes = useStyles();
+ const store = CampaignViewStore.contentStepStore;
+ if (!store) return null;
 
  return (
    <div className={classes.root}>
@@ -100,6 +100,6 @@ function ContentStep() {
     }
    </div>
  )
-};
+}
 
 export default observer(ContentStep);

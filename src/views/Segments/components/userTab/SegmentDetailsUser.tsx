@@ -39,7 +39,7 @@ const extraStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default () => {
+function SegmentDetailsUser() {
   const classes = useStyles();
   const eClasses = extraStyles();
 
@@ -50,25 +50,31 @@ export default () => {
           {Dictionary.defValue(DictionaryService.keys.visitorType)}
         </Grid>
         <Grid item xs={6} sm={6} md={6} className={classes.textToRight}>
-          <Button color="primary" onClick={() => SegmentViewStore.clearVisitorType()}>
+          <Button
+            color="primary"
+            onClick={() => SegmentViewStore.clearVisitorType()}
+          >
             {Dictionary.defValue(DictionaryService.keys.reset)}
           </Button>
         </Grid>
       </Grid>
-      <VisitorTypeComponent/>
-      <Divider light className={eClasses.marginTop}/>
+      <VisitorTypeComponent />
+      <Divider light className={eClasses.marginTop} />
       <Grid container className={eClasses.marginTop}>
         <Grid item xs={6} sm={6} md={6}>
           {Dictionary.defValue(DictionaryService.keys.lastSeen)}
         </Grid>
         <Grid item xs={6} sm={6} md={6} className={classes.textToRight}>
-          <Button color="primary" onClick={() => SegmentViewStore.clearLastSeen()}>
+          <Button
+            color="primary"
+            onClick={() => SegmentViewStore.clearLastSeen()}
+          >
             {Dictionary.defValue(DictionaryService.keys.reset)}
           </Button>
         </Grid>
       </Grid>
-      <LastSeenComponent/>
-      <Divider light className={eClasses.marginTop}/>
+      <LastSeenComponent />
+      <Divider light className={eClasses.marginTop} />
       <Grid container className={eClasses.marginTop}>
         <Grid item xs={6} sm={6} md={6}>
           {Dictionary.defValue(DictionaryService.keys.geoLocation)}
@@ -79,31 +85,39 @@ export default () => {
           </Button>
         </Grid>
       </Grid>
-      <GeoLocationsComponent/>
-      <Divider light className={eClasses.marginTop}/>
+      <GeoLocationsComponent />
+      <Divider light className={eClasses.marginTop} />
       <Grid container className={eClasses.marginTop}>
         <Grid item xs={6} sm={6} md={6}>
           {Dictionary.defValue(DictionaryService.keys.userAttributes)}
         </Grid>
         <Grid item xs={6} sm={6} md={6} className={classes.textToRight}>
-          <Button color="primary" onClick={() => SegmentViewStore.clearAttributes()}>
+          <Button
+            color="primary"
+            onClick={() => SegmentViewStore.clearAttributes()}
+          >
             {Dictionary.defValue(DictionaryService.keys.reset)}
           </Button>
         </Grid>
       </Grid>
-      <UserAttributesComponent/>
-      <Divider light className={eClasses.marginTop}/>
+      <UserAttributesComponent />
+      <Divider light className={eClasses.marginTop} />
       <Grid container className={eClasses.marginTop}>
         <Grid item xs={6} sm={6} md={6}>
           {Dictionary.defValue(DictionaryService.keys.reachability)}
         </Grid>
         <Grid item xs={6} sm={6} md={6} className={classes.textToRight}>
-          <Button color="primary" onClick={() => SegmentViewStore.clearReachability()}>
+          <Button
+            color="primary"
+            onClick={() => SegmentViewStore.clearReachability()}
+          >
             {Dictionary.defValue(DictionaryService.keys.reset)}
           </Button>
         </Grid>
       </Grid>
-      <ReachabilityComponent/>
+      <ReachabilityComponent />
     </div>
   );
-};
+}
+
+export default SegmentDetailsUser;

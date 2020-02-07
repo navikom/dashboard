@@ -12,6 +12,6 @@ export class AndroidStore extends AbstractDeviceStore {
   //######### static ###########//
 
   @action static addNewItem() {
-    super.addNewItem(new AndroidStore())
+    super.addNewItem(new AndroidStore());
   }
 }
