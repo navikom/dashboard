@@ -3,7 +3,7 @@ import {
   IGeo,
   INumberOfSessions,
   IReachability,
-  IUserTab
+  IUserData
 } from "interfaces/ISegment";
 import { action, observable } from "mobx";
 import {
@@ -18,7 +18,7 @@ import { DateTypes, NumberTypes } from "types/expressions";
 import { IDateFilter } from "interfaces/IFilters";
 import { ChannelType } from "types/commonTypes";
 
-export class UserTabStore implements IUserTab {
+export class UserTabStore implements IUserData {
   @observable attributes: AttributeType = null;
   @observable geo: IGeo | null = null;
   @observable lastSeen: IDateFilter | null = null;

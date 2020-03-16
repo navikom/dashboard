@@ -5,7 +5,6 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Typography from "@material-ui/core/Typography";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 
 // @material-ui/icons
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -17,6 +16,7 @@ import { IUsersDevices } from "interfaces/IUsersDevices";
 import { Dictionary, DictionaryService } from "services/Dictionary/Dictionary";
 import Chip from "@material-ui/core/Chip";
 import { ExpansionDataItems } from "components/ExpansionPanel/ExpansionDataItems";
+import ExpansionPanelDetails from "components/ExpansionPanel/ExpansionPanelDetails";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme: Theme) =>

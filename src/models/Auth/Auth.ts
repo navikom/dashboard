@@ -1,4 +1,5 @@
 import { action, IReactionDisposer, observable, runInAction } from "mobx";
+import Cookies from 'js-cookie';
 import { api, Apis } from "api";
 import { Errors } from "models/Errors";
 import { IFlow } from "interfaces/IFlow";
@@ -42,28 +43,19 @@ const registrConstraints = Object.assign({
 }, constraints);
 
 export class AuthStore extends Errors implements IFlow {
-  static SESSION = "session";
   static REMEMBER_ME = "rememberMe";
 
-  @observable session: number | null = null;
   @observable rememberMe = false;
-  @observable expires = 0;
   @observable anonymous = true;
+  @observable sid?: string;
 
   disposer?: IReactionDisposer;
-  timer?: NodeJS.Timeout;
-
-  get isExpired(): boolean {
-    return Date.now() > this.expires;
-  }
 
   @action
   async checkLocalStorage() {
     const rememberMe = localStorage.getItem(AuthStore.REMEMBER_ME);
-    runInAction(() => {
-      this.session = Number(localStorage.getItem(AuthStore.SESSION));
-    });
-    if (!this.session || !rememberMe) {
+
+    if (!rememberMe) {
       await this.fetchAnonymous();
     } else {
       await this.refresh();
@@ -106,19 +98,15 @@ export class AuthStore extends Errors implements IFlow {
       this.update(data);
     } catch (err) {
       console.log("Refresh Error", err.message);
-      localStorage.removeItem(AuthStore.SESSION);
       App.navigationHistory && App.navigationHistory.push(Constants.LOGIN_ROUTE);
     }
   }
 
   @action
   update(response: ILoginResult) {
-    this.session = response.session;
-    this.expires = response.expires * 1000;
     this.anonymous = response.anonymous;
-    localStorage.setItem(AuthStore.SESSION, response.session.toString());
+    this.sid = Cookies.get("sid");
     App.setUser(response.user);
-    this.checkExpiresTimer();
   }
 
   @action
@@ -150,20 +138,9 @@ export class AuthStore extends Errors implements IFlow {
   }
 
   clearStorage() {
-    localStorage.removeItem(AuthStore.SESSION);
     localStorage.removeItem(AuthStore.REMEMBER_ME);
   }
 
-  checkExpiresTimer() {
-    if (this.timer) clearTimeout(this.timer);
-    this.timer = setTimeout(() => {
-      if (this.isExpired) {
-        this.refresh();
-      } else {
-        this.checkExpiresTimer();
-      }
-    }, 5000);
-  }
 
   onInput(data: IAuthUser, login = false) {
     if (this.hasError) {
@@ -174,7 +151,6 @@ export class AuthStore extends Errors implements IFlow {
 
   stop(): void {
     this.disposer && this.disposer();
-    this.timer && clearTimeout(this.timer);
   }
 }
 

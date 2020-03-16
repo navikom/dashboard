@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default () => {
+const SegmentDetailsTechnology = () => {
   const classes = useStyles();
   const [opened, setOpened] = useState([false, false]);
   const onChange = (index: number) => (
@@ -55,7 +55,7 @@ export default () => {
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3a-content"
-          id="panel3a-header"
+          id="panel3a-header-1"
         >
           <Typography className={classes.heading}>ANDROID</Typography>
         </ExpansionPanelSummary>
@@ -67,7 +67,7 @@ export default () => {
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3a-content"
-          id="panel3a-header"
+          id="panel3a-header-2"
         >
           <Typography className={classes.heading}>IOS</Typography>
         </ExpansionPanelSummary>
@@ -78,3 +78,5 @@ export default () => {
     </div>
   );
 };
+
+export default SegmentDetailsTechnology;

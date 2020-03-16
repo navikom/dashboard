@@ -117,7 +117,7 @@ export const AppsItem = (props: AppsItemProps) => {
 
   useEffect(() => {
     return () => dispose()
-  }, []);
+  }, [dispose]);
 
   const key = pageName && `${pageName}_${appId}`;
   const ChildComponent = key && AppComponents[key];

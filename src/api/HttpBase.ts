@@ -4,13 +4,11 @@ import settings from "config/server";
 
 export abstract class HttpBase {
  url: string;
- session: number | null;
  debug = true;
  currentRequests: {[k: string]: any} = {};
 
- protected constructor(url: string, session: number | null) {
+ protected constructor(url: string) {
   this.url = `${settings.mainApi}/${url}`;
-  this.session = session;
  }
 
  pagination(page: number, pageSize: number, additionalParams?: number) {
@@ -38,9 +36,9 @@ export abstract class HttpBase {
  }
 
  fetchData(method: string, calMethod?: string, body?: Body, header: Headers = {}, excludeHeaders?: string[]) {
-  if (this.session) {
-   header["X-Cookie"] = `SESSION=${this.session}`;
-  }
+  // if (this.session) {
+  //  header["X-Cookie"] = `SESSION=${this.session}`;
+  // }
   const url = calMethod ? `${this.url}/${calMethod}` : this.url;
   return request(method, url, header, body, excludeHeaders, this.debug);
  }

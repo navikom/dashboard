@@ -3,6 +3,7 @@ import { Pagination } from "models/Pagination";
 import { IEvent } from "interfaces/IEvent";
 
 import { EventStore } from "models/Event/EventStore";
+import { Dictionary } from "services/Dictionary/Dictionary";
 
 class EventsStore extends Pagination<IEvent> {
   @observable systemEventsList?: string[];
@@ -10,7 +11,7 @@ class EventsStore extends Pagination<IEvent> {
 
   @computed get eventTableData() {
     return this.tableData((e: IEvent) => {
-      return [e.userId.toString(), e.createdAt, e.title, e.user.email, e.user.anonymousString, e.user.eventsCount!.toString()];
+      return [e.userId.toString(), Dictionary.timeDateString(e.createdAt), e.title, e.user.email, e.user.anonymousString, e.user.eventsCount!.toString()];
     });
   }
 

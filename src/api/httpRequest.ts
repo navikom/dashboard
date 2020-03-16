@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { Headers, Body } from "interfaces/Request";
 import { ErrorHandler } from "utils/ErrorHandler";
 
@@ -11,14 +12,14 @@ export async function request(method: string, url: string, allHeaders: Headers =
       headers[key] && delete headers[key];
     })
   }
-  const object: RequestInit = { method, headers };
+  const object: RequestInit = { method, headers, credentials: "include" };
   body && (object.body = body instanceof FormData ? body : JSON.stringify(body));
   if (debug) {
     console.log("REQUEST", url, method, body, headers);
   }
   const response = await fetch(url, object);
   if (debug) {
-    console.log("RESPONSE", url, response, response.headers.get("Content-Type"));
+    console.log("RESPONSE", url, response, response.headers.get("Content-Type"), Cookies.get());
   }
 
   try {

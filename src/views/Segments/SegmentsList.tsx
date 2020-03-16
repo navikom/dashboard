@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from 'react';
 import { observer, useDisposable } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router";
 import { when } from "mobx";
@@ -32,7 +32,7 @@ const Table = lazy(() => import("components/Table/TablePagination"));
 const RegularButton = lazy(() => import("components/CustomButtons/Button"));
 const Overview = lazy(() => import("views/Campaigns/Overview"));
 
-const Title = (props: { onClick: () => void }) => {
+const Title: FC<{ onClick: () => void }> = (props) => {
   const classes = useStyles();
   const eClasses = useListStyles();
   return (
@@ -47,7 +47,7 @@ const Title = (props: { onClick: () => void }) => {
   );
 };
 
-const SegmentsTable = observer((props: { onBtnClick: () => void }) => {
+const SegmentsTable: FC<{ onBtnClick: () => void }> = observer((props) => {
   const eClasses = useListStyles();
   return (
     <div className={eClasses.root}>

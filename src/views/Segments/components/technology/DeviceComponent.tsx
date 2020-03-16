@@ -46,7 +46,7 @@ interface IPropsArgument {
   device: "android" | "ios";
 }
 
-const DeviceComponent = observer((props: IPropsArgument) => {
+const DeviceItem = observer((props: IPropsArgument) => {
   const classes = useStyles();
   const store = SegmentTechnologyViewStore[props.device];
   const first = {
@@ -95,7 +95,7 @@ const DeviceComponent = observer((props: IPropsArgument) => {
           fourth={fourth}
         />
       </Grid>
-      <Grid item xs={12} sm={2} md={2} className={classes.textRight}>
+      <Grid container item xs={12} sm={2} md={2} alignItems="center" justify="flex-end">
         {
           showAdd && (
             <IconButton onClick={props.addNewItem} size="small">
@@ -118,9 +118,9 @@ const DeviceComponent = observer((props: IPropsArgument) => {
   )
 });
 
-export default observer((props: {device: "android" | "ios"}) => {
-  if (!SegmentViewStore.segment) return null;
+const DeviceComponent = (props: {device: "android" | "ios"}) => {
   const classes = useStyles();
+  if (!SegmentViewStore.segment) return null;
   const store = SegmentTechnologyViewStore[props.device];
   const showAdd = store.list.length === 0;
   return (
@@ -131,7 +131,7 @@ export default observer((props: {device: "android" | "ios"}) => {
             <AddCircleOutline color="primary"/>
           </IconButton>
         ) : store.list.map((item: ISegmentDevice, i: number) =>
-          <DeviceComponent
+          <DeviceItem
             key={i}
             item={item}
             addNewItem={() => store.addNewItem()}
@@ -142,4 +142,6 @@ export default observer((props: {device: "android" | "ios"}) => {
       }
     </div>
   );
-});
+};
+
+export default observer(DeviceComponent);

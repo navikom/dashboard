@@ -150,9 +150,13 @@ export abstract class Pagination<T extends WithPrimaryKey> extends Errors implem
 
   };
 
-  @action handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  @action handleChangeRowsPerPage = async (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     this.viewRowsPerPage = Number(event.target.value);
     this.viewPage = 0;
+    this.pageSize = Math.max(20, this.viewRowsPerPage);
+    if(this.pageSize > this.size) {
+      await this.tryGetNext();
+    }
   };
 
   @action

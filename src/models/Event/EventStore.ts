@@ -17,9 +17,13 @@ export class EventStore implements IEvent {
   app!: IApp | null;
   device!: IDevice;
   region!: IRegion;
-  info!: {[key: string]: any} | null;
+  info!: {[key: string]: any};
   title!: string;
   user!: IUser;
+
+  get hasCustom() {
+    return Object.keys(this.info).length > 0;
+  }
 
   constructor(model: IEvent) {
     Object.assign(this, model);

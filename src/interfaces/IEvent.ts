@@ -11,7 +11,9 @@ export interface IEvent extends WithPrimaryKey {
   app: IApp | null;
   device: IDevice;
   region: IRegion;
-  info: { [key: string]: any } | null;
+  info: { [key: string]: any };
   title: string;
   createdAt: Date;
+
+  hasCustom: boolean;
 }

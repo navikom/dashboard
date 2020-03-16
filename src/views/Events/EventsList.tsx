@@ -60,7 +60,7 @@ const UsersTable = observer((props: UsersTableProps) => {
       tableProps={{
         tableHeaderColor: "primary",
         tableHead: [
-          Dictionary.defValue(DictionaryService.keys.id),
+          Dictionary.defValue(DictionaryService.keys.userId),
           Dictionary.defValue(DictionaryService.keys.date),
           Dictionary.defValue(DictionaryService.keys.action),
           Dictionary.defValue(DictionaryService.keys.email),
@@ -82,7 +82,7 @@ const UsersTable = observer((props: UsersTableProps) => {
   );
 });
 
-const EventsUsersList = (props: UsersListProps) => {
+const EventsList = (props: UsersListProps) => {
   useDisposable(() =>
     when(() => App.sessionIsReady, () => Events.fetchItems())
   );
@@ -266,7 +266,7 @@ const EventsUsersList = (props: UsersListProps) => {
               )
             },
             {
-              tabName: Dictionary.defValue(DictionaryService.keys.users),
+              tabName: Dictionary.defValue(DictionaryService.keys.list),
               tabIcon: People,
               tabContent: (
                 <UsersTable
@@ -283,4 +283,4 @@ const EventsUsersList = (props: UsersListProps) => {
   );
 };
 
-export default withStyles(style)(EventsUsersList);
+export default withStyles(style)(EventsList);

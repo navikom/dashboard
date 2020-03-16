@@ -31,7 +31,7 @@ import {
 import { IRoute } from "interfaces/IRoute";
 
 const DashboardPage = lazy(() => import("views/Dashboard/Dashboard"));
-const EventsUsersList = lazy(() => import("views/Events/EventsUsersList.tsx"));
+const EventsList = lazy(() => import("views/Events/EventsList.tsx"));
 const EventsUsersItem = lazy(() => import("views/Events/EventsUsersItem.tsx"));
 const UserProfile = lazy(() => import("views/UserProfile/UserProfile"));
 const AppsList = lazy(() => import("views/AppsList/AppsList"));
@@ -86,7 +86,7 @@ const dashboardRoutesMap = {
     name: "Events",
     rtlName: "لوحة القيادة",
     icon: LinearScaleOutlined,
-    component: EventsUsersList,
+    component: EventsList,
     layout: PANEL_ROUTE,
     auth: true,
     category: SIDEBAR_MAIN
@@ -94,7 +94,7 @@ const dashboardRoutesMap = {
   eventsUser: {
     url: "/events-users",
     params: "/:userId",
-    name: "Events User",
+    name: "Events",
     rtlName: "لوحة القيادة",
     icon: SupervisedUserCircle,
     component: EventsUsersItem,

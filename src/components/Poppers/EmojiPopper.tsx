@@ -29,7 +29,7 @@ export default observer((props: { store: IPopper }) => {
       console.log("clear poppers");
       store.clear();
     };
-  }, []);
+  }, [store]);
 
   // @ts-ignore
   const picker = <Picker onSelect={store.select} darkMode={false} />;
