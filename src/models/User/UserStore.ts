@@ -56,18 +56,20 @@ export class UserStore implements IUser {
   @observable devices?: IUsersDevices[];
   @observable apps?: IUsersApps[];
   @observable referrals: IPagination<IUser>;
+  @observable anonymous: boolean = true;
   readonly roles: IObservableArray<IUsersRoles> = observable<IUsersRoles>([]);
 
 
   @computed
   get fullName(): string {
-    const name = (this.firstName ? this.firstName : "") + (this.lastName ? this.lastName : "");
+    const name = (this.firstName ? this.firstName : "") + (this.lastName ? " " + this.lastName : "");
     return name.length ? name : "No name";
   }
 
   @computed
   get anonymousString(): string {
-    return Dictionary.defValue(DictionaryService.keys.anonymous);
+    return this.anonymous ? Dictionary.defValue(DictionaryService.keys.anonymous)
+      : Dictionary.defValue(DictionaryService.keys.loggedIn);
   }
 
   @computed get isSuperAdmin() {
@@ -125,6 +127,7 @@ export class UserStore implements IUser {
     model.notificationEmail !== undefined && (this.notificationEmail = model.notificationEmail);
     model.notificationSms !== undefined && (this.notificationSms = model.notificationSms);
     model.subscription !== undefined && (this.subscription = model.subscription);
+    model.anonymous !== undefined && (this.anonymous = model.anonymous);
     model.referrer && (this.referrer = model.referrer);
     model.lastEvent && (this.lastEvent = model.lastEvent);
     model.roles && this.updateRoles(model.roles);

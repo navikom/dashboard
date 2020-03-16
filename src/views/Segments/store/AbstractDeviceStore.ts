@@ -7,7 +7,6 @@ import { IStringFilter } from "interfaces/IFilters";
 export abstract class AbstractDeviceStore extends AbstractViewStore implements ISegmentDevice {
   static propertiesMap: Map<string, Map<string, ExpressionValueType | undefined> | undefined>;
   model: ModelCtor;
-  @observable static readonly list = observable<ISegmentDevice>([]);
 
   @observable currentPropertyName?: string;
   @observable currentExpression?: string;
@@ -60,18 +59,6 @@ export abstract class AbstractDeviceStore extends AbstractViewStore implements I
     return Array.from(this.propertiesMap.keys());
   }
 
-  @action static removeItem(index: number) {
-    this.list.splice(index, 1);
-  }
-
-  @action static addNewItem(store: ISegmentDevice) {
-    store.setPropertyName(this.propertyNames[0]);
-    this.list.push(store);
-  }
-
-  @action static clear() {
-    this.list.replace([]);
-  }
 }
 
 type ModelType = typeof AbstractDeviceStore;

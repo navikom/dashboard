@@ -3,8 +3,8 @@ import { HttpBase } from "api/HttpBase";
 import { ILoginResult } from "interfaces/ILoginResult";
 
 class User extends HttpBase {
-  constructor(session: number | null) {
-    super("users", session);
+  constructor() {
+    super("users");
   }
 
   signup(email: string, password: string): Promise<ILoginResult> {
@@ -50,14 +50,14 @@ class User extends HttpBase {
 }
 
 class AEvent extends HttpBase {
-  constructor(session: number | null) {
-    super("events", session);
+  constructor() {
+    super("events");
   }
 }
 
 class App extends HttpBase {
-  constructor(session: number | null) {
-    super("apps", session);
+  constructor() {
+    super("apps");
   }
 
   update(appId: number, data: any) {
@@ -77,8 +77,8 @@ class App extends HttpBase {
 }
 
 class Setting extends HttpBase {
-  constructor(session: number | null) {
-    super("settings", session);
+  constructor() {
+    super("settings");
   }
 
   getData() {
@@ -87,8 +87,8 @@ class Setting extends HttpBase {
 }
 
 class PixartPicture extends HttpBase {
-  constructor(session: number | null) {
-    super("pixart-pictures", session);
+  constructor() {
+    super("pixart-pictures");
   }
 
   save(data: any) {
@@ -100,64 +100,64 @@ class PixartPicture extends HttpBase {
 }
 
 class Roles extends HttpBase {
-  constructor(session: number | null) {
-    super("roles", session);
+  constructor() {
+    super("roles");
   }
 }
 
 class Segments extends HttpBase {
-  constructor(session: number | null) {
-    super("segments", session);
+  constructor() {
+    super("segments");
   }
 }
 
 class Campaign extends HttpBase {
-  constructor(session: number | null) {
-    super("campaigns", session);
+  constructor() {
+    super("campaigns");
   }
 }
 
 class Region extends HttpBase {
-  constructor(session: number | null) {
-    super("regions", session);
+  constructor() {
+    super("regions");
   }
 }
 
 export default class Api extends ApiBase {
 
   get user(): User {
-    return new User(this.session);
+    return new User();
   }
 
   get event(): AEvent {
-    return new AEvent(this.session);
+    return new AEvent();
   }
 
   get app(): App {
-    return new App(this.session);
+    return new App();
   }
 
   get setting(): Setting {
-    return new Setting(this.session);
+    return new Setting();
   }
 
   get pixartPicture(): PixartPicture {
-    return new PixartPicture(this.session);
+    return new PixartPicture();
   }
 
   get role(): Roles {
-    return new Roles(this.session);
+    return new Roles();
   }
 
   get segment(): Segments {
-    return new Segments(this.session);
+    return new Segments();
   }
 
   get campaign(): Campaign {
-    return new Campaign(this.session);
+    return new Campaign();
   }
 
   get region(): Region {
-    return new Region(this.session);
+    return new Region();
   }
 }

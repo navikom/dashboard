@@ -40,6 +40,7 @@ const constraints = {
   },
   phone: {
     format: {
+      // eslint-disable-next-line
       pattern: /^[+]?(1\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4}|\d{6})$/g,
       message: `^${Dictionary.defValue(DictionaryService.keys.invalid, Dictionary.defValue(DictionaryService.keys.phone))}`
     },

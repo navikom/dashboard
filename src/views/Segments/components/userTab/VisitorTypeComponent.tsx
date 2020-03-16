@@ -20,7 +20,7 @@ type ThirdSelectOptionsType = {
 
 export default observer(() => {
   if (!SegmentViewStore.segment) return null;
-  const userTab = SegmentViewStore.segment.userTab;
+  const userTab = SegmentViewStore.segment.userData;
 
   const first = {
     value: userTab!.visitorType.name,

@@ -317,15 +317,14 @@ function CloseEditorDialog(props: { open: boolean; onOk: () => void; onCancel: (
 function Editor(props: IBeeComponent) {
   const classes = useStyles();
   const store = new BeeStore();
-  const { handleClose} = props;
-
+  const { handleClose, ...rest } = props;
   useEffect(() => {
-    const { handleClose, ...rest } = props;
+
     store.onFetchBeeToken().then(() => store.start(rest)).catch((err) => console.log("Beefree error %s", err.message));
     return () => {
       console.log("Clear Editor");
     };
-  }, []);
+  }, [store, rest]);
   return (
     <div className={classes.container}>
       <EditorHeader handleClose={handleClose} store={store} />

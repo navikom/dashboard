@@ -38,7 +38,7 @@ export type AttributeType =
   | (IAttribute | AndType | OrType)[]
   | null;
 
-export interface IUserTab {
+export interface IUserData {
   visitorType: INumberOfSessions;
   lastSeen: IDateFilter | null;
   geo: IGeo | null;
@@ -76,13 +76,13 @@ type BehaviorType =
   | (IBehaviorEvent | AndType | OrType)[]
   | null;
 
-export interface IBehaviorTab {
+export interface IBehavior {
   usersWhoDidEvents: BehaviorType;
   and: boolean;
   usersWhoDidNotDoEvents: BehaviorType;
 }
 
-export interface ITechnologyTab {
+export interface ITechnology {
   android?: IAndroidDevice | null;
   ios?: IIOSDevice | null;
 }
@@ -91,9 +91,11 @@ export interface ISegment extends WithPrimaryKey {
   segmentId: number;
   name: string;
   pk: string;
-  userTab?: IUserTab;
-  behaviorTab?: IBehaviorTab;
-  technologyTab?: ITechnologyTab;
+  userData?: IUserData;
+  behavior?: IBehavior;
+  technology?: ITechnology;
   createdAt?: Date;
   updatedAt?: Date;
+
+  toJSON(): {[key: string]: any};
 }

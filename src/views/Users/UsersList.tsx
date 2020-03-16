@@ -43,7 +43,7 @@ export default observer((props: RouteComponentProps) => {
           tableProps={{
             tableHeaderColor: "primary",
             tableHead: [
-              Dictionary.defValue(DictionaryService.keys.id),
+              Dictionary.defValue(DictionaryService.keys.userId),
               Dictionary.defValue(DictionaryService.keys.date),
               Dictionary.defValue(DictionaryService.keys.action),
               Dictionary.defValue(DictionaryService.keys.email),

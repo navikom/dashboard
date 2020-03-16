@@ -40,7 +40,7 @@ class SegmentViewStore extends Errors {
   @observable segment?: ISegment;
 
   @computed get visitorTypeValues() {
-    const userTab = this.segment!.userTab;
+    const userTab = this.segment!.userData;
     const value = userTab!.visitorType.value;
     const values = userTab!.visitorType.values;
     const min = userTab!.visitorType.min;
@@ -51,7 +51,7 @@ class SegmentViewStore extends Errors {
   }
 
   @computed get lastSeenValues() {
-    const userTab = this.segment!.userTab;
+    const userTab = this.segment!.userData;
     const values: { date?: Date; from?: Date; to?: Date } = {};
     if (!userTab || (userTab && !userTab.lastSeen)) {
       return values;
@@ -65,18 +65,18 @@ class SegmentViewStore extends Errors {
   }
 
   @computed get lastSeenValue() {
-    const userTab = this.segment!.userTab;
+    const userTab = this.segment!.userData;
     return userTab!.lastSeen ? userTab!.lastSeen.is : "";
   }
 
   @computed get reachabilityOn() {
-    const userTab = this.segment!.userTab;
+    const userTab = this.segment!.userData;
     return userTab!.reachability === null ? ""
       : userTab!.reachability!.on ? this.reachabilityExpressions[0] : this.reachabilityExpressions[1];
   }
 
   @computed get reachabilityValue() {
-    const userTab = this.segment!.userTab;
+    const userTab = this.segment!.userData;
     return this.channelList.find((e) => userTab!.reachability!.value === e[0])![1];
   }
 
@@ -90,27 +90,32 @@ class SegmentViewStore extends Errors {
       : Segments.getById(segmentId);
     this.clearAll();
     this.regionViewStore = new SegmentRegionViewStore();
+    this.fetchSegment();
+  }
+
+  @action fetchSegment() {
+    Segments.fetchSegment(this.segment as ISegment);
   }
 
   @action updateVisitorValue(data: string | string[], key: "values" | "value" | "min" | "max") {
     const value: number | number[] = Array.isArray(data) ? data.map((e: string) => Number(e)) : Number(data);
-    this.segment!.userTab!.updateVisitorConditionValue(value, key);
+    this.segment!.userData!.updateVisitorConditionValue(value, key);
   }
 
   @action clearVisitorType() {
-    this.segment!.userTab!.updateVisitor(VisitorTypeList[0]);
+    this.segment!.userData!.updateVisitor(VisitorTypeList[0]);
   }
 
   @action updateLastSeenExpression(value: string) {
-    this.segment!.userTab!.updateLastSeen(value as DateTypes);
+    this.segment!.userData!.updateLastSeen(value as DateTypes);
   }
 
   @action updateLastSeenValue(date: Date, key: "from" | "to") {
-    this.segment!.userTab!.updateLastSeenValue(date, key);
+    this.segment!.userData!.updateLastSeenValue(date, key);
   }
 
   @action clearLastSeen() {
-    this.segment!.userTab!.updateLastSeen();
+    this.segment!.userData!.updateLastSeen();
   }
 
   @action clearGeo() {
@@ -130,7 +135,7 @@ class SegmentViewStore extends Errors {
   }
 
   @action clearReachability() {
-    this.segment && this.segment.userTab && this.segment.userTab.clearReachability();
+    this.segment && this.segment.userData && this.segment.userData.clearReachability();
   }
 
   @action saveSegment() {
@@ -138,7 +143,7 @@ class SegmentViewStore extends Errors {
   }
 
   @action clearAll() {
-    this.segment && this.segment.userTab && this.segment.userTab.clear();
+    this.segment && this.segment.userData && this.segment.userData.clear();
     SegmentRegionViewStore.clear();
     SegmentAttributeViewStore.clear();
     SegmentEventViewStore.clear();

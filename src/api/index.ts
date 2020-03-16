@@ -1,5 +1,4 @@
 import MainApi from "api/MainApi/Api";
-import { Auth } from "models/Auth/Auth";
 import { ErrorHandler } from "utils/ErrorHandler";
 
 export enum Apis {
@@ -7,7 +6,7 @@ export enum Apis {
 }
 export function api(type: Apis) {
   if (type === Apis.Main) {
-      return new MainApi(Auth.session);
+      return new MainApi();
   }
   throw new ErrorHandler('There is not Api type provided');
 }

@@ -46,7 +46,7 @@ function InfoItem(props: InfoItemType) {
       <Grid item xs={12} sm={12} md={12}>
         <Chip label={props.title} />
       </Grid>
-      {props.data.map((prop: string[], key: number) => (
+      {props.data.map((prop: (string | {[key: string]: string})[], key: number) => (
         <ExpansionDataItems key={key} title={prop[0]} data={prop[1]} />
       ))}
     </Grid>
@@ -60,14 +60,14 @@ type EventInfoType = {
 function EventInfo(props: EventInfoType) {
   return (
     <Grid container>
-      <InfoItem title="Device" data={props.data.device.plainData} />
-      <InfoItem title="Region" data={props.data.region.plainData} />
+      <InfoItem title={Dictionary.defValue(DictionaryService.keys.device)} data={props.data.device.plainData} />
+      <InfoItem title={Dictionary.defValue(DictionaryService.keys.region)} data={props.data.region.plainData} />
       {props.data.app && (
-        <InfoItem title="App" data={props.data.app.plainData} />
+        <InfoItem title={Dictionary.defValue(DictionaryService.keys.application)} data={props.data.app.plainData} />
       )}
-      {props.data.info && (
+      {props.data.hasCustom && (
         <InfoItem
-          title="Custom"
+          title={Dictionary.defValue(DictionaryService.keys.custom)}
           data={Object.keys(props.data.info).map(k => [
             k,
             props.data.info && props.data.info[k] ? JSON.stringify(props.data.info[k]) : ""

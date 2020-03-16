@@ -37,6 +37,7 @@ export interface IUser extends WithPrimaryKey {
   location?: IUsersRegions;
   lastEvent?: Date;
   referrals: IPagination<IUser>;
+  anonymous: boolean;
 
   fullDataLoaded: boolean;
 

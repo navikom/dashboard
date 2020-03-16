@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { useDisposable } from "mobx-react-lite";
-import { IReactionDisposer, when } from "mobx";
+import { when } from "mobx";
 
 // @material-ui/core components
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
@@ -48,12 +48,11 @@ const EventsUsersItem = (props: UsersItemProps) => {
   const userId = Number(props.match.params.userId);
   const [user, setUser] = useState({ userId } as IUser);
 
-  let fullDataDispose: IReactionDisposer;
   const dispose = useDisposable(() =>
     when(() => App.sessionIsReady, () => {
       const u = Users.getByIdFullData(userId);
       u.events!.fetchItems();
-      fullDataDispose = when(() => u.fullDataLoaded, () => {
+      when(() => u.fullDataLoaded, () => {
         setUser(u);
       });
     }));
@@ -61,9 +60,8 @@ const EventsUsersItem = (props: UsersItemProps) => {
   useEffect(() => {
     return () => {
       dispose();
-      fullDataDispose && fullDataDispose();
     }
-  }, []);
+  }, [dispose]);
 
   return (
     <GridContainer>

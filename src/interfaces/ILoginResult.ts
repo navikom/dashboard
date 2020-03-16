@@ -1,8 +1,7 @@
 import { IUser } from "interfaces/IUser";
 
 export interface ILoginResult {
-  session: number;
-  expires: number;
+  expires: Date;
   anonymous: boolean;
   user: IUser;
 }

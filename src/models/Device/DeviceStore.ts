@@ -20,7 +20,7 @@ export class DeviceStore implements IDevice {
   }
 
   constructor(model: IDevice) {
-    let params = {};
+    let params: {headers: string} = {headers: ""};
     try {
       params = JSON.parse(model.info.headers);
     } catch (e) {

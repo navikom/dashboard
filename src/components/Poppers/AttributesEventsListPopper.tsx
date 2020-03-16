@@ -108,7 +108,7 @@ export default observer((props: { store: IAttributesEventsPopper }) => {
       console.log("clear poppers");
       store.clear();
     };
-  }, []);
+  }, [store]);
 
   return (
     <Popper

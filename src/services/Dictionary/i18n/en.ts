@@ -25,6 +25,7 @@ export default {
   Build: "Build",
   openFirebaseConfig: "Open Firebase config sample",
   occurs: "occurs",
+  custom: "Custom",
   insertFBCredentials: "Insert Firebase credentials to the",
   createDatabase: "Create a database",
   guide9:
@@ -96,6 +97,7 @@ export default {
   overview: "Overview",
   campaignList: "List of Campaigns",
   segmentsList: "List of Segments",
+  list: "List",
   analyze: "Analyze",
   totalPeople: "Total People",
   knownUsers: "Known Users",
@@ -112,6 +114,7 @@ export default {
   attributes: "Attributes",
   at: "at",
   devices: "Devices",
+  device: "Device",
   events: "Events",
   conversionEvent: "Conversion Event",
   conversionDeadline: "Conversion Deadline",
